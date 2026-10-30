@@ -1,14 +1,15 @@
-/* Design tokens. Colours are provisional until Madar's brand files are received. */
+/* Design tokens. Palette sampled from the Madar logo (teal ribbon). */
 :root {
-  --bg: #0c0c0e;
-  --bg-raised: #141417;
-  --bg-soft: #1b1b1f;
-  --line: rgba(255, 255, 255, 0.09);
-  --text: #f3efe8;
-  --text-muted: #a7a29a;
-  --accent: #e2a84b; /* warm gold, "light through the lens" */
-  --accent-ink: #1a1307;
-  --accent-soft: rgba(226, 168, 75, 0.14);
+  --bg: #071216;
+  --bg-raised: #0c1b20;
+  --bg-soft: #11252b;
+  --line: rgba(180, 230, 245, 0.1);
+  --text: #eef6f8;
+  --text-muted: #9db3b9;
+  --accent: #1fb0d8; /* logo teal */
+  --accent-ink: #03222b;
+  --accent-soft: rgba(31, 176, 216, 0.14);
+  --accent-deep: #00546a; /* logo shadow tone */
 
   --font: 'IBM Plex Sans Arabic', system-ui, -apple-system, 'Segoe UI', Tahoma, sans-serif;
 
@@ -155,7 +156,7 @@ p {
 }
 
 .btn-primary:hover {
-  background: #edb95f;
+  background: #4cc6e8;
 }
 
 .btn-ghost {
@@ -171,7 +172,7 @@ p {
   display: inline-block;
   padding: 2px 10px;
   border-radius: 999px;
-  border: 1px dashed rgba(226, 168, 75, 0.6);
+  border: 1px dashed rgba(31, 176, 216, 0.6);
   color: var(--accent);
   font-size: 0.75rem;
   font-weight: 600;
