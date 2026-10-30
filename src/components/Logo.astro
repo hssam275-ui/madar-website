@@ -1,4 +1,5 @@
 ---
+import { url } from '../utils/url';
 // Official Madar logo, extracted from the supplied JPEG (brand/logo-original.jpg).
 // TODO: swap for the original vector (SVG/AI) file when available for sharper rendering.
 import { site } from '../data/site';
@@ -11,8 +12,8 @@ const dims = variant === 'mark' ? { w: 480, h: 252 } : { w: 900, h: 563 };
 ---
 
 <picture class={`logo logo-${variant}`}>
-  <source srcset={`/brand/logo-${variant}.webp`} type="image/webp" />
-  <img src={`/brand/logo-${variant}.png`} width={dims.w} height={dims.h} alt={site.name[lang]} />
+  <source srcset={url(`/brand/logo-${variant}.webp`)} type="image/webp" />
+  <img src={url(`/brand/logo-${variant}.png`)} width={dims.w} height={dims.h} alt={site.name[lang]} />
 </picture>
 
 <style>

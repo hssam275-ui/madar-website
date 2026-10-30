@@ -1,4 +1,5 @@
 ---
+import { url } from '../utils/url';
 import Logo from './Logo.astro';
 import Icon from './Icon.astro';
 import type { HomeCopy } from '../i18n/home';
@@ -9,7 +10,7 @@ interface Props {
   altPath: string;
 }
 const { lang, t, altPath } = Astro.props;
-const home = lang === 'ar' ? '/' : '/en/';
+const home = url(lang === 'ar' ? '/' : '/en/');
 const links = [
   { href: '#services', label: t.services },
   { href: '#work', label: t.work },

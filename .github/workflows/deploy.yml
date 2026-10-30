@@ -1,0 +1,40 @@
+# Builds the site on every push to main and publishes dist/ to the gh-pages branch (GitHub Pages).
+# When the custom domain is connected: set the repository variables SITE_URL (e.g. https://madar.sa)
+# and BASE_PATH ("/"), and CUSTOM_DOMAIN (e.g. madar.sa) under Settings → Secrets and variables → Actions → Variables.
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: deploy
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+        env:
+          SITE_URL: ${{ vars.SITE_URL || 'https://hssam275-ui.github.io' }}
+          BASE_PATH: ${{ vars.BASE_PATH || '/madar-website/' }}
+          PUBLIC_WEB3FORMS_KEY: ${{ vars.PUBLIC_WEB3FORMS_KEY }}
+      - name: Add custom domain file
+        if: ${{ vars.CUSTOM_DOMAIN != '' }}
+        run: echo "${{ vars.CUSTOM_DOMAIN }}" > dist/CNAME
+      - uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          force_orphan: true

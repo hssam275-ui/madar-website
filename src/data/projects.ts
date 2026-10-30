@@ -1,3 +1,5 @@
+import { url } from '../utils/url';
+
 // Portfolio. Media lives in /public/work (videos compressed to ~720p with scripts/encode-video.sh).
 // Add a project: drop files in public/work, then add an entry below.
 
@@ -24,8 +26,8 @@ export type Project = {
 // Paths derived from slug: /work/<slug>.mp4, -preview.mp4, .jpg (video) or .webp (image).
 export const media = (p: Project) =>
   p.kind === 'video'
-    ? { src: `/work/${p.slug}.mp4`, preview: `/work/${p.slug}-preview.mp4`, poster: `/work/${p.slug}.jpg` }
-    : { src: `/work/${p.slug}.webp`, preview: '', poster: `/work/${p.slug}.webp` };
+    ? { src: url(`/work/${p.slug}.mp4`), preview: url(`/work/${p.slug}-preview.mp4`), poster: url(`/work/${p.slug}.jpg`) }
+    : { src: url(`/work/${p.slug}.webp`), preview: '', poster: url(`/work/${p.slug}.webp`) };
 
 // TODO (Madar): confirm each client name may be shown publicly.
 export const projects: Project[] = [
