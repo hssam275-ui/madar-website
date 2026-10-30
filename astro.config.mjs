@@ -2,9 +2,8 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
-// SITE_URL / BASE_PATH are set by the deploy workflow. Once the custom domain is live,
-// set SITE_URL to it and BASE_PATH to "/".
-const SITE_URL = process.env.SITE_URL ?? 'https://example.com';
+// SITE_URL / BASE_PATH can be overridden at build time (e.g. to preview under a sub-path).
+const SITE_URL = process.env.SITE_URL ?? 'https://madaribda.com';
 const BASE_PATH = process.env.BASE_PATH ?? '/';
 
 export default defineConfig({
