@@ -29,7 +29,8 @@ jobs:
         env:
           SITE_URL: ${{ vars.SITE_URL || 'https://madaribda.com' }}
           BASE_PATH: ${{ vars.BASE_PATH || '/' }}
-          PUBLIC_WEB3FORMS_KEY: ${{ vars.PUBLIC_WEB3FORMS_KEY }}
+          # Web3Forms access keys are public by design (they ship in the page HTML).
+          PUBLIC_WEB3FORMS_KEY: ${{ vars.PUBLIC_WEB3FORMS_KEY || '37eb1cd2-cd1b-449f-938d-487c55925f24' }}
       - uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
