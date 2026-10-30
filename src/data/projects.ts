@@ -50,6 +50,14 @@ export const projects: Project[] = [
     en: { title: 'Eid al-Fitr celebrations 2025', client: 'Qiya Municipality', summary: 'Aerial and ground coverage of the city’s Eid decorations and celebrations.' },
   },
   {
+    slug: 'qiya-national-day',
+    category: 'gov',
+    kind: 'video',
+    orientation: 'landscape',
+    ar: { title: 'احتفالات اليوم الوطني 95', client: 'بلدية قيا', summary: 'فيلم احتفالي يوثّق مسيرات اليوم الوطني والفروسية وزينة المدينة والحفل الرسمي، بلقطات جوية وأرضية.' },
+    en: { title: 'National Day 95 celebrations', client: 'Qiya Municipality', summary: 'A celebratory film covering the National Day parades, horsemen, city decorations and the official ceremony, from the air and the ground.' },
+  },
+  {
     slug: 'ibsar-charity',
     category: 'gov',
     kind: 'video',
@@ -73,6 +81,22 @@ export const projects: Project[] = [
     orientation: 'portrait',
     ar: { title: 'ريلز عروض الاستوديو', client: 'SHED Studio', summary: 'ريلز ترويجي لعروض تأجير الاستوديو بأسلوب حواري مباشر.' },
     en: { title: 'Studio offers reel', client: 'SHED Studio', summary: 'A direct-to-camera promo reel for studio rental offers.' },
+  },
+  {
+    slug: 'business-academy-reel',
+    category: 'reels',
+    kind: 'video',
+    orientation: 'portrait',
+    ar: { title: 'ريلز شهادات إدارة المشاريع', client: 'أكاديمية اعمل بيزنس', summary: 'ريلز ترويجي لبرامج الشهادات الاحترافية بأسلوب حواري مع موشن جرافيك ونصوص متحركة.' },
+    en: { title: 'Project management certificates reel', client: 'Aamal Business Academy', summary: 'A promo reel for professional certificate programmes, combining direct-to-camera delivery with motion graphics and captions.' },
+  },
+  {
+    slug: 'english-academy-reel',
+    category: 'reels',
+    kind: 'video',
+    orientation: 'portrait',
+    ar: { title: 'ريلز أكاديمية لغة إنجليزية للأطفال', client: 'أكاديمية Moonglish الدولية', summary: 'جولة ريلز داخل الأكاديمية تعرّف بأسلوب تعليم الإنجليزية للأطفال ومرافقها.' },
+    en: { title: 'Kids’ English academy reel', client: 'Moonglish International Academy', summary: 'A walkthrough reel of the academy, introducing its approach to teaching English to children and its facilities.' },
   },
   {
     slug: 'dental-reel',
