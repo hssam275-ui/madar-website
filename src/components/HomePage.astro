@@ -1,0 +1,653 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from './Header.astro';
+import Footer from './Footer.astro';
+import QuoteForm from './QuoteForm.astro';
+import Icon from './Icon.astro';
+import { home } from '../i18n/home';
+import { services } from '../data/services';
+import { projects } from '../data/projects';
+import { whatsappLink } from '../data/site';
+
+interface Props {
+  lang: 'ar' | 'en';
+}
+const { lang } = Astro.props;
+const t = home[lang];
+const altPath = lang === 'ar' ? '/en/' : '/';
+const wa = whatsappLink(t.contact.whatsappMsg);
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: t.faq.items.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<Base title={t.meta.title} description={t.meta.description} lang={lang} altPath={altPath} schema={[faqSchema]}>
+  <Header lang={lang} t={t.nav} altPath={altPath} />
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-orbit" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
+      <div class="container hero-inner">
+        <p class="eyebrow">{t.hero.eyebrow}</p>
+        <h1>
+          <span>{t.hero.title[0]}</span>
+          <span class="accent">{t.hero.title[1]}</span>
+        </h1>
+        <p class="hero-lead">{t.hero.lead}</p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="#contact">{t.hero.primary} <Icon name="arrow" size={18} /></a>
+          <a class="btn btn-ghost" href="#work">{t.hero.secondary}</a>
+        </div>
+      </div>
+      <div class="container">
+        <!-- TODO: replace with the company showreel (muted autoplay loop + poster image). -->
+        <div class="reel" role="img" aria-label={t.hero.reel}>
+          <span class="reel-play"><Icon name="play" size={22} /></span>
+          <span class="reel-label">{t.hero.reel}</span>
+          <span class="placeholder-badge">{t.hero.reelNote}</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow">{t.services.eyebrow}</p>
+          <h2>{t.services.title}</h2>
+          <p>{t.services.lead}</p>
+        </div>
+        <ul class="services">
+          {
+            services.map((s, i) => (
+              <li class="service" data-reveal style={`transition-delay:${(i % 4) * 60}ms`}>
+                <span class="service-icon"><Icon name={s.icon} size={26} /></span>
+                <h3>{s[lang].title}</h3>
+                <p>{s[lang].summary}</p>
+                <a class="service-link" href={`#contact`} data-service={s.slug}>
+                  {t.services.cta} <Icon name="arrow" size={16} />
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+
+    <!-- WORK -->
+    <section class="section work-section" id="work">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow">{t.work.eyebrow}</p>
+          <h2>{t.work.title}</h2>
+          <p>{t.work.lead}</p>
+        </div>
+        <ul class="work">
+          {
+            projects.map((p, i) => (
+              <li class={`work-item ${i === 0 ? 'wide' : ''}`} data-reveal>
+                <div class="work-media" style={`--h:${p.hue}`}>
+                  {p.image ? <img src={p.image} alt={p[lang].title} loading="lazy" decoding="async" /> : null}
+                  {p.placeholder && <span class="placeholder-badge work-badge">{t.work.sample}</span>}
+                </div>
+                <div class="work-meta">
+                  <span class="work-cat">{p[lang].category}</span>
+                  <h3>{p[lang].title}</h3>
+                  <span class="work-client">{p[lang].client}</span>
+                </div>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="section" id="process">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow">{t.process.eyebrow}</p>
+          <h2>{t.process.title}</h2>
+        </div>
+        <ol class="steps">
+          {
+            t.process.steps.map((s, i) => (
+              <li class="step" data-reveal style={`transition-delay:${i * 80}ms`}>
+                <span class="step-num">{String(i + 1).padStart(2, '0')}</span>
+                <h3>{s.title}</h3>
+                <p>{s.text}</p>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+    </section>
+
+    <!-- STUDIO / PODCAST -->
+    <section class="section studio-section">
+      <div class="container studio" data-reveal>
+        <div class="studio-copy">
+          <p class="eyebrow">{t.studio.eyebrow}</p>
+          <h2>{t.studio.title}</h2>
+          <p>{t.studio.text}</p>
+          <ul class="studio-points">
+            {t.studio.points.map((pt) => <li><Icon name="check" size={18} /> {pt}</li>)}
+          </ul>
+          <a class="btn btn-primary" href="#contact" data-service="podcast">{t.studio.cta}</a>
+        </div>
+        <div class="studio-visual" aria-hidden="true">
+          <Icon name="mic" size={72} />
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY -->
+    <section class="section">
+      <div class="container why">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow">{t.why.eyebrow}</p>
+          <h2>{t.why.title}</h2>
+        </div>
+        <ul class="why-list">
+          {
+            t.why.items.map((w) => (
+              <li data-reveal>
+                <h3>{w.title}</h3>
+                <p>{w.text}</p>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq">
+      <div class="container faq-wrap">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow">{t.faq.eyebrow}</p>
+          <h2>{t.faq.title}</h2>
+        </div>
+        <div class="faq">
+          {
+            t.faq.items.map((f) => (
+              <details>
+                <summary>
+                  {f.q}
+                  <Icon name="plus" size={20} />
+                </summary>
+                <p>{f.a}</p>
+              </details>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT / QUOTE -->
+    <section class="section contact-section" id="contact">
+      <div class="container contact">
+        <div class="contact-copy" data-reveal>
+          <p class="eyebrow">{t.contact.eyebrow}</p>
+          <h2>{t.contact.title}</h2>
+          <p>{t.contact.lead}</p>
+          {
+            wa && (
+              <a class="btn btn-ghost" href={wa} target="_blank" rel="noopener">
+                <Icon name="whatsapp" size={20} /> {t.contact.whatsapp}
+              </a>
+            )
+          }
+        </div>
+        <QuoteForm lang={lang} t={t.contact.form} />
+      </div>
+    </section>
+  </main>
+
+  <Footer lang={lang} t={t.footer} nav={t.nav} />
+
+  {
+    wa && (
+      <a class="wa-fab" href={wa} target="_blank" rel="noopener" aria-label={t.contact.whatsapp}>
+        <Icon name="whatsapp" size={28} />
+      </a>
+    )
+  }
+</Base>
+
+<script>
+  // "Request this service" buttons pre-select the service in the quote form.
+  document.querySelectorAll<HTMLAnchorElement>('[data-service]').forEach((a) =>
+    a.addEventListener('click', () => {
+      const select = document.querySelector<HTMLSelectElement>('#quote-service');
+      if (select) select.value = a.dataset.service!;
+    }),
+  );
+</script>
+
+<style>
+  /* HERO */
+  .hero {
+    position: relative;
+    padding-block: clamp(140px, 18vw, 200px) clamp(48px, 8vw, 96px);
+    overflow: hidden;
+  }
+  .hero-orbit {
+    position: absolute;
+    inset-inline-end: -12vw;
+    top: 4vw;
+    width: min(70vw, 820px);
+    aspect-ratio: 1;
+    pointer-events: none;
+  }
+  .hero-orbit span {
+    position: absolute;
+    inset: 0;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    transform: rotateX(68deg) rotateZ(-20deg);
+  }
+  .hero-orbit span:nth-child(2) {
+    inset: 14%;
+    border-color: rgba(226, 168, 75, 0.25);
+    animation: spin 40s linear infinite;
+  }
+  .hero-orbit span:nth-child(3) {
+    inset: 38%;
+    border: 0;
+    background: radial-gradient(circle, rgba(226, 168, 75, 0.35), transparent 65%);
+    transform: none;
+    filter: blur(20px);
+  }
+  @keyframes spin {
+    to {
+      transform: rotateX(68deg) rotateZ(340deg);
+    }
+  }
+  .hero-inner {
+    position: relative;
+    display: grid;
+    gap: 24px;
+  }
+  .hero h1 {
+    font-size: clamp(2.8rem, 8vw, 6.4rem);
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+  }
+  .hero h1 span {
+    display: block;
+  }
+  .accent {
+    color: var(--accent);
+  }
+  .hero-lead {
+    max-width: 620px;
+    color: var(--text-muted);
+    font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+  }
+  .hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-block-start: 8px;
+  }
+  .reel {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-block-start: clamp(48px, 7vw, 88px);
+    aspect-ratio: 16 / 7;
+    min-height: 220px;
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+    background:
+      radial-gradient(ellipse at 30% 20%, rgba(226, 168, 75, 0.18), transparent 55%),
+      linear-gradient(135deg, #18181c, #0f0f12);
+  }
+  .reel-play {
+    display: grid;
+    place-items: center;
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--accent-ink);
+  }
+  .reel-label {
+    font-weight: 600;
+  }
+
+  /* SERVICES */
+  .services {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .service {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 32px 28px;
+    background: var(--bg);
+    transition: background-color 0.3s;
+  }
+  .service:hover {
+    background: var(--bg-raised);
+  }
+  .service-icon {
+    display: grid;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    margin-block-end: 8px;
+    border-radius: 14px;
+    background: var(--accent-soft);
+    color: var(--accent);
+  }
+  .service h3 {
+    font-size: 1.2rem;
+  }
+  .service p {
+    color: var(--text-muted);
+    font-size: 0.97rem;
+    flex: 1;
+  }
+  .service-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  /* WORK */
+  .work-section {
+    background: var(--bg-raised);
+  }
+  .work {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .work-item.wide {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+  .work-item {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .work-media {
+    position: relative;
+    flex: 1;
+    min-height: 220px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 70% 30%, hsl(var(--h) 60% 45% / 0.55), transparent 60%),
+      linear-gradient(160deg, hsl(var(--h) 25% 16%), #111114);
+    transition: transform 0.5s ease;
+  }
+  .work-item:hover .work-media {
+    transform: scale(0.985);
+  }
+  .work-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .work-badge {
+    position: absolute;
+    top: 16px;
+    inset-inline-start: 16px;
+    background: rgba(0, 0, 0, 0.4);
+  }
+  .work-meta {
+    display: grid;
+    gap: 2px;
+  }
+  .work-cat {
+    color: var(--accent);
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+  .work-meta h3 {
+    font-size: 1.15rem;
+  }
+  .work-client {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+  }
+
+  /* PROCESS */
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: none;
+  }
+  .step {
+    display: grid;
+    align-content: start;
+    gap: 10px;
+    padding-block-start: 24px;
+    border-top: 1px solid var(--line);
+  }
+  .step-num {
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 0.95rem;
+  }
+  .step h3 {
+    font-size: 1.25rem;
+  }
+  .step p {
+    color: var(--text-muted);
+    font-size: 0.97rem;
+  }
+
+  /* STUDIO */
+  .studio {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: clamp(32px, 6vw, 80px);
+    align-items: center;
+    padding: clamp(32px, 6vw, 72px);
+    border-radius: calc(var(--radius) * 1.5);
+    background:
+      radial-gradient(ellipse at 90% 10%, rgba(226, 168, 75, 0.16), transparent 50%),
+      var(--bg-soft);
+    border: 1px solid var(--line);
+  }
+  .studio-copy {
+    display: grid;
+    gap: 18px;
+    justify-items: start;
+  }
+  .studio-copy h2 {
+    font-size: clamp(1.8rem, 3.4vw, 2.7rem);
+  }
+  .studio-copy > p {
+    color: var(--text-muted);
+  }
+  .studio-points {
+    display: grid;
+    gap: 8px;
+    margin: 0 0 8px;
+    padding: 0;
+    list-style: none;
+  }
+  .studio-points li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .studio-points :global(svg) {
+    color: var(--accent);
+  }
+  .studio-visual {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 1px solid rgba(226, 168, 75, 0.3);
+    color: var(--accent);
+    background: radial-gradient(circle, rgba(226, 168, 75, 0.12), transparent 70%);
+  }
+
+  /* WHY */
+  .why-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .why-list li {
+    display: grid;
+    gap: 8px;
+    align-content: start;
+  }
+  .why-list h3 {
+    font-size: 1.15rem;
+  }
+  .why-list p {
+    color: var(--text-muted);
+    font-size: 0.97rem;
+  }
+
+  /* FAQ */
+  .faq-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: clamp(24px, 6vw, 80px);
+  }
+  .faq details {
+    border-bottom: 1px solid var(--line);
+  }
+  .faq summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 22px 0;
+    font-weight: 600;
+    font-size: 1.08rem;
+    cursor: pointer;
+    list-style: none;
+  }
+  .faq summary::-webkit-details-marker {
+    display: none;
+  }
+  .faq summary :global(svg) {
+    flex-shrink: 0;
+    color: var(--accent);
+    transition: transform 0.3s;
+  }
+  .faq details[open] summary :global(svg) {
+    transform: rotate(45deg);
+  }
+  .faq details p {
+    padding-block-end: 22px;
+    color: var(--text-muted);
+  }
+
+  /* CONTACT */
+  .contact-section {
+    background: var(--bg-raised);
+  }
+  .contact {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: clamp(32px, 6vw, 80px);
+    align-items: start;
+  }
+  .contact-copy {
+    display: grid;
+    gap: 18px;
+    justify-items: start;
+  }
+  .contact-copy h2 {
+    font-size: clamp(1.9rem, 3.6vw, 2.9rem);
+  }
+  .contact-copy > p {
+    color: var(--text-muted);
+  }
+
+  /* WHATSAPP FAB */
+  .wa-fab {
+    position: fixed;
+    bottom: 20px;
+    inset-inline-end: 20px;
+    z-index: 40;
+    display: grid;
+    place-items: center;
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: #25d366;
+    color: #fff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  }
+
+  @media (max-width: 960px) {
+    .work {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .steps,
+    .why-list {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .studio,
+    .faq-wrap,
+    .contact {
+      grid-template-columns: 1fr;
+    }
+    .studio-visual {
+      display: none;
+    }
+  }
+  @media (max-width: 600px) {
+    .work,
+    .steps,
+    .why-list {
+      grid-template-columns: 1fr;
+    }
+    .work-item.wide {
+      grid-column: auto;
+      grid-row: auto;
+    }
+    .reel {
+      aspect-ratio: 4 / 3;
+    }
+  }
+</style>

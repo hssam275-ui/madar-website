@@ -1,0 +1,168 @@
+---
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import type { HomeCopy } from '../i18n/home';
+
+interface Props {
+  lang: 'ar' | 'en';
+  t: HomeCopy['nav'];
+  altPath: string;
+}
+const { lang, t, altPath } = Astro.props;
+const home = lang === 'ar' ? '/' : '/en/';
+const links = [
+  { href: '#services', label: t.services },
+  { href: '#work', label: t.work },
+  { href: '#process', label: t.process },
+  { href: '#faq', label: t.faq },
+  { href: '#contact', label: t.contact },
+];
+---
+
+<header class="header" data-header>
+  <div class="container bar">
+    <a href={home} aria-label="Madar"><Logo lang={lang} /></a>
+
+    <nav class="nav" aria-label={lang === 'ar' ? 'القائمة الرئيسية' : 'Main navigation'}>
+      <ul id="nav-list">
+        {links.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
+        <li class="lang-mobile"><a href={altPath} hreflang={lang === 'ar' ? 'en' : 'ar'}>{t.lang}</a></li>
+      </ul>
+    </nav>
+
+    <div class="actions">
+      <a class="lang" href={altPath} hreflang={lang === 'ar' ? 'en' : 'ar'}>{t.lang}</a>
+      <a class="btn btn-primary quote" href="#contact">{t.quote}</a>
+      <button class="toggle" type="button" aria-controls="nav-list" aria-expanded="false" data-open={t.menu} data-close={t.close}>
+        <span class="visually-hidden">{t.menu}</span>
+        <Icon name="menu" />
+      </button>
+    </div>
+  </div>
+</header>
+
+<script>
+  const header = document.querySelector<HTMLElement>('[data-header]')!;
+  const toggle = header.querySelector<HTMLButtonElement>('.toggle')!;
+  const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 24);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  const setOpen = (open: boolean) => {
+    header.classList.toggle('open', open);
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.querySelector('.visually-hidden')!.textContent = open ? toggle.dataset.close! : toggle.dataset.open!;
+  };
+  toggle.addEventListener('click', () => setOpen(!header.classList.contains('open')));
+  header.querySelectorAll('.nav a').forEach((a) => a.addEventListener('click', () => setOpen(false)));
+</script>
+
+<style>
+  .header {
+    position: fixed;
+    inset-inline: 0;
+    top: 0;
+    z-index: 50;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    border-bottom: 1px solid transparent;
+  }
+  .header.scrolled,
+  .header.open {
+    background: rgba(12, 12, 14, 0.85);
+    backdrop-filter: blur(14px);
+    border-bottom-color: var(--line);
+  }
+  .bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    height: 76px;
+  }
+  .nav ul {
+    display: flex;
+    gap: 32px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .nav a {
+    color: var(--text-muted);
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav a:hover {
+    color: var(--text);
+  }
+  .actions {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+  .lang {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+  }
+  .lang:hover {
+    color: var(--text);
+  }
+  .quote {
+    min-height: 44px;
+    padding: 8px 20px;
+    font-size: 0.95rem;
+  }
+  .toggle,
+  .lang-mobile {
+    display: none;
+  }
+
+  @media (max-width: 960px) {
+    .toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      background: transparent;
+      color: var(--text);
+      cursor: pointer;
+    }
+    .lang {
+      display: none;
+    }
+    .lang-mobile {
+      display: block;
+    }
+    .nav {
+      position: absolute;
+      top: 76px;
+      inset-inline: 0;
+      display: none;
+      background: rgba(12, 12, 14, 0.97);
+      border-bottom: 1px solid var(--line);
+    }
+    .header.open .nav {
+      display: block;
+    }
+    .nav ul {
+      flex-direction: column;
+      gap: 0;
+      padding: 8px var(--gutter) 24px;
+    }
+    .nav a {
+      display: block;
+      padding: 14px 0;
+      font-size: 1.1rem;
+      color: var(--text);
+      border-bottom: 1px solid var(--line);
+    }
+  }
+  @media (max-width: 480px) {
+    .quote {
+      padding: 8px 14px;
+      font-size: 0.85rem;
+    }
+  }
+</style>

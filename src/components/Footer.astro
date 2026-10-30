@@ -1,0 +1,116 @@
+---
+import Logo from './Logo.astro';
+import { site, whatsappLink } from '../data/site';
+import type { HomeCopy } from '../i18n/home';
+
+interface Props {
+  lang: 'ar' | 'en';
+  t: HomeCopy['footer'];
+  nav: HomeCopy['nav'];
+}
+const { lang, t, nav } = Astro.props;
+const year = new Date().getFullYear();
+const wa = whatsappLink();
+const social = Object.entries(site.social).filter(([, url]) => url);
+const hasContact = site.email || site.phone || wa || site.city[lang];
+---
+
+<footer class="footer">
+  <div class="container grid">
+    <div class="brand">
+      <Logo lang={lang} />
+      <p>{t.tagline}</p>
+    </div>
+
+    <nav aria-label={t.linksTitle}>
+      <h2>{t.linksTitle}</h2>
+      <ul>
+        <li><a href="#services">{nav.services}</a></li>
+        <li><a href="#work">{nav.work}</a></li>
+        <li><a href="#process">{nav.process}</a></li>
+        <li><a href="#contact">{nav.quote}</a></li>
+      </ul>
+    </nav>
+
+    <div>
+      <h2>{t.contactTitle}</h2>
+      {
+        hasContact ? (
+          <ul>
+            {site.email && <li><a href={`mailto:${site.email}`}>{site.email}</a></li>}
+            {site.phone && <li><a href={`tel:${site.phone}`} dir="ltr">{site.phone}</a></li>}
+            {wa && <li><a href={wa} target="_blank" rel="noopener">WhatsApp</a></li>}
+            {site.city[lang] && <li>{site.city[lang]}</li>}
+          </ul>
+        ) : (
+          <p class="placeholder-badge">{t.pending}</p>
+        )
+      }
+      {
+        social.length > 0 && (
+          <ul class="social">
+            {social.map(([name, url]) => (
+              <li><a href={url} target="_blank" rel="noopener">{name}</a></li>
+            ))}
+          </ul>
+        )
+      }
+    </div>
+  </div>
+  <div class="container bottom">
+    <p>© {year} {site.name[lang]}. {t.rights}</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    padding-block: 72px 32px;
+    border-top: 1px solid var(--line);
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 40px;
+  }
+  .brand {
+    display: grid;
+    gap: 14px;
+    align-content: start;
+  }
+  .brand p {
+    max-width: 340px;
+    color: var(--text-muted);
+  }
+  h2 {
+    margin-block-end: 14px;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+  ul {
+    display: grid;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  a:hover {
+    color: var(--accent);
+  }
+  .social {
+    margin-block-start: 16px;
+    text-transform: capitalize;
+  }
+  .bottom {
+    margin-block-start: 56px;
+    padding-block-start: 24px;
+    border-top: 1px solid var(--line);
+    color: var(--text-muted);
+    font-size: 0.9rem;
+  }
+  @media (max-width: 760px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

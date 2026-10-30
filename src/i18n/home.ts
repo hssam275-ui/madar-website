@@ -1,0 +1,248 @@
+// Home page copy in both languages. Keep keys identical across languages.
+
+export const home = {
+  ar: {
+    meta: {
+      title: 'مدار الإبداع المتكامل | إنتاج إعلامي وتصوير وبودكاست في السعودية',
+      description:
+        'مدار الإبداع المتكامل شريك إبداعي للشركات والعلامات التجارية في السعودية: إنتاج إعلامي، تصوير فوتوغرافي وفيديو، إنتاج بودكاست، صناعة محتوى وحلول تسويقية. اطلب عرض سعر.',
+    },
+    nav: {
+      services: 'خدماتنا',
+      work: 'أعمالنا',
+      process: 'طريقة عملنا',
+      faq: 'الأسئلة الشائعة',
+      contact: 'تواصل معنا',
+      quote: 'اطلب عرض سعر',
+      lang: 'English',
+      menu: 'القائمة',
+      close: 'إغلاق',
+    },
+    hero: {
+      eyebrow: 'إنتاج إعلامي · محتوى · بودكاست',
+      title: ['من الفكرة', 'إلى الشاشة.'],
+      lead:
+        'مدار الإبداع المتكامل شريكك الإبداعي في السعودية. نخطط وننتج المحتوى المرئي والصوتي الذي يعرّف الناس بعلامتك ويقنعهم بالتواصل معك.',
+      primary: 'اطلب عرض سعر',
+      secondary: 'شاهد أعمالنا',
+      reel: 'العرض التعريفي (Showreel)',
+      reelNote: 'يُضاف فيديو الشركة هنا',
+    },
+    services: {
+      eyebrow: 'خدماتنا',
+      title: 'كل ما يحتاجه مشروعك الإعلامي، تحت سقف واحد',
+      lead: 'فريق واحد يتابع مشروعك من الفكرة والتخطيط إلى التصوير والمونتاج والنشر، فلا تحتاج إلى التنسيق بين عدة جهات.',
+      cta: 'اطلب هذه الخدمة',
+    },
+    work: {
+      eyebrow: 'أعمالنا',
+      title: 'مختارات من أعمالنا',
+      lead: 'نماذج من مشاريع نفذناها لعلامات تجارية وجهات مختلفة.',
+      sample: 'نموذج مؤقت',
+      all: 'كل الأعمال',
+    },
+    process: {
+      eyebrow: 'طريقة عملنا',
+      title: 'أربع خطوات واضحة من أول اتصال حتى التسليم',
+      steps: [
+        { title: 'نفهم هدفك', text: 'جلسة قصيرة نتعرف فيها على علامتك وجمهورك وما تريد تحقيقه من المحتوى.' },
+        { title: 'نخطط ونسعّر', text: 'نرسل لك فكرة وخطة إنتاج وعرض سعر واضحًا بالتكلفة والمدة.' },
+        { title: 'ننتج', text: 'تصوير وتسجيل وإخراج بفريق ومعدات احترافية، مع إطلاعك على كل مرحلة.' },
+        { title: 'نسلّم ونطوّر', text: 'نسخ جاهزة لكل منصة، ومراجعات حتى تعتمد العمل النهائي.' },
+      ],
+    },
+    why: {
+      eyebrow: 'لماذا مدار',
+      title: 'شريك يفكر في النتيجة، لا في التصوير فقط',
+      items: [
+        { title: 'خدمة متكاملة', text: 'الاستراتيجية والإنتاج والتسويق في فريق واحد.' },
+        { title: 'فهم للسوق السعودي', text: 'محتوى يخاطب جمهورك بلغته وثقافته.' },
+        { title: 'وضوح في التكلفة والمواعيد', text: 'عرض سعر مفصل وجدول زمني متفق عليه قبل البدء.' },
+        { title: 'جودة إنتاج عالية', text: 'معدات احترافية واهتمام بأدق تفاصيل الصورة والصوت.' },
+      ],
+    },
+    studio: {
+      eyebrow: 'البودكاست والاستوديو',
+      title: 'عندك فكرة بودكاست؟ نجهز لك كل شيء.',
+      text: 'من تطوير فكرة البرنامج وإعداد الضيوف إلى التصوير بعدة كاميرات والمونتاج والنشر. ويمكنك حجز الاستوديو والمعدات فقط إن كان لديك فريقك.',
+      cta: 'احجز جلسة تسجيل',
+      points: ['تصوير بعدة كاميرات', 'صوت احترافي', 'مونتاج ونسخ قصيرة للمنصات'],
+    },
+    faq: {
+      eyebrow: 'الأسئلة الشائعة',
+      title: 'أسئلة يطرحها عملاؤنا',
+      items: [
+        {
+          q: 'ما الخدمات التي تقدمها مدار الإبداع المتكامل؟',
+          a: 'نقدم الإنتاج الإعلامي، والتصوير الفوتوغرافي والفيديو، وإنتاج البودكاست، وتجهيز الاستوديوهات والمعدات، وصناعة المحتوى، والحلول التسويقية، وتطوير الأعمال، والاستشارات الإبداعية.',
+        },
+        {
+          q: 'كيف أحصل على عرض سعر؟',
+          a: 'املأ نموذج طلب عرض السعر في هذه الصفحة أو راسلنا على واتساب. نراجع طلبك ونتواصل معك لنفهم التفاصيل، ثم نرسل عرضًا مفصلًا.',
+        },
+        {
+          q: 'هل تعملون مع الشركات الناشئة ورواد الأعمال؟',
+          a: 'نعم، نعمل مع الشركات والمؤسسات والعلامات التجارية ورواد الأعمال، ونقترح حلولًا تناسب حجم المشروع وميزانيته.',
+        },
+        {
+          q: 'كم يستغرق تنفيذ المشروع؟',
+          a: 'تختلف المدة حسب نوع المشروع وحجمه. نحدد الجدول الزمني بوضوح في عرض السعر قبل البدء.',
+        },
+      ],
+    },
+    contact: {
+      eyebrow: 'ابدأ مشروعك',
+      title: 'أخبرنا بفكرتك، ونعود إليك بخطة وعرض سعر.',
+      lead: 'املأ النموذج وسيتواصل معك فريقنا. وإن كنت تفضّل المحادثة، راسلنا مباشرة على واتساب.',
+      whatsapp: 'راسلنا على واتساب',
+      whatsappMsg: 'السلام عليكم، أرغب في الاستفسار عن خدمات مدار الإبداع المتكامل.',
+      form: {
+        name: 'الاسم',
+        company: 'الشركة أو الجهة (اختياري)',
+        contact: 'البريد الإلكتروني أو رقم الجوال',
+        service: 'نوع الخدمة',
+        servicePick: 'اختر الخدمة',
+        other: 'أخرى / غير متأكد',
+        details: 'وصف مختصر للمشروع',
+        budget: 'الميزانية التقريبية (اختياري)',
+        budgets: ['أقل من 10,000 ريال', '10,000 – 30,000 ريال', '30,000 – 100,000 ريال', 'أكثر من 100,000 ريال', 'أفضّل عدم الذكر'],
+        date: 'الموعد المتوقع للتنفيذ (اختياري)',
+        submit: 'أرسل الطلب',
+        sending: 'جارٍ الإرسال…',
+        success: 'وصلنا طلبك، شكرًا لك. سيتواصل معك فريقنا قريبًا.',
+        error: 'تعذّر الإرسال. حاول مرة أخرى أو راسلنا على واتساب.',
+        notReady: 'نموذج الطلب قيد التفعيل. يُرجى التواصل عبر وسائل التواصل أدناه مؤقتًا.',
+      },
+    },
+    footer: {
+      tagline: 'شريك إبداعي متكامل في الإنتاج الإعلامي وصناعة المحتوى.',
+      rights: 'جميع الحقوق محفوظة.',
+      contactTitle: 'تواصل',
+      linksTitle: 'روابط',
+      pending: 'بيانات التواصل الرسمية تُضاف قريبًا',
+    },
+  },
+  en: {
+    meta: {
+      title: 'Madar Integrated Creativity | Media Production, Video & Podcasts in Saudi Arabia',
+      description:
+        'Madar Integrated Creativity is a creative production partner for companies and brands in Saudi Arabia: media production, photo and video, podcast production, content creation and marketing. Request a quote.',
+    },
+    nav: {
+      services: 'Services',
+      work: 'Work',
+      process: 'Process',
+      faq: 'FAQ',
+      contact: 'Contact',
+      quote: 'Request a quote',
+      lang: 'العربية',
+      menu: 'Menu',
+      close: 'Close',
+    },
+    hero: {
+      eyebrow: 'Media production · Content · Podcasts',
+      title: ['From idea', 'to screen.'],
+      lead:
+        'Madar Integrated Creativity is your creative partner in Saudi Arabia. We plan and produce the video and audio content that introduces your brand and gets people to reach out.',
+      primary: 'Request a quote',
+      secondary: 'See our work',
+      reel: 'Showreel',
+      reelNote: 'Company showreel goes here',
+    },
+    services: {
+      eyebrow: 'Services',
+      title: 'Everything your media project needs, under one roof',
+      lead: 'One team takes your project from concept and planning through filming, editing and publishing, so you never have to coordinate several vendors.',
+      cta: 'Request this service',
+    },
+    work: {
+      eyebrow: 'Work',
+      title: 'Selected work',
+      lead: 'A selection of projects we have produced for brands and organisations.',
+      sample: 'Sample',
+      all: 'All work',
+    },
+    process: {
+      eyebrow: 'Process',
+      title: 'Four clear steps from first call to delivery',
+      steps: [
+        { title: 'Understand', text: 'A short session to learn about your brand, your audience and what the content must achieve.' },
+        { title: 'Plan & price', text: 'We send a concept, a production plan and a clear quote with cost and timeline.' },
+        { title: 'Produce', text: 'Filming, recording and direction with a professional crew and kit, with updates at every stage.' },
+        { title: 'Deliver', text: 'Platform-ready versions and revisions until you sign off the final cut.' },
+      ],
+    },
+    why: {
+      eyebrow: 'Why Madar',
+      title: 'A partner focused on results, not just footage',
+      items: [
+        { title: 'End-to-end service', text: 'Strategy, production and marketing in one team.' },
+        { title: 'Saudi market insight', text: 'Content that speaks to your audience in their language and culture.' },
+        { title: 'Clear cost and timing', text: 'A detailed quote and agreed schedule before work starts.' },
+        { title: 'High production quality', text: 'Professional equipment and close attention to picture and sound.' },
+      ],
+    },
+    studio: {
+      eyebrow: 'Podcast & studio',
+      title: 'Got a podcast idea? We will set up everything.',
+      text: 'From show concept and guest prep to multi-camera recording, editing and publishing. If you have your own team, you can book just the studio and equipment.',
+      cta: 'Book a recording session',
+      points: ['Multi-camera recording', 'Professional audio', 'Editing and short clips for social'],
+    },
+    faq: {
+      eyebrow: 'FAQ',
+      title: 'Questions clients ask us',
+      items: [
+        {
+          q: 'What services does Madar Integrated Creativity offer?',
+          a: 'Media production, photography and video, podcast production, studio and equipment rental, content creation, marketing solutions, business development and creative consulting.',
+        },
+        {
+          q: 'How do I get a quote?',
+          a: 'Fill in the quote form on this page or message us on WhatsApp. We review your request, contact you to understand the details, then send a detailed proposal.',
+        },
+        {
+          q: 'Do you work with startups and entrepreneurs?',
+          a: 'Yes. We work with companies, organisations, brands and entrepreneurs, and suggest options that fit the size and budget of each project.',
+        },
+        {
+          q: 'How long does a project take?',
+          a: 'It depends on the type and size of the project. We set out the timeline clearly in the quote before work begins.',
+        },
+      ],
+    },
+    contact: {
+      eyebrow: 'Start a project',
+      title: 'Tell us your idea. We will come back with a plan and a quote.',
+      lead: 'Fill in the form and our team will contact you. Prefer to chat? Message us on WhatsApp.',
+      whatsapp: 'Message us on WhatsApp',
+      whatsappMsg: 'Hello, I would like to ask about Madar Integrated Creativity services.',
+      form: {
+        name: 'Name',
+        company: 'Company or organisation (optional)',
+        contact: 'Email or mobile number',
+        service: 'Service',
+        servicePick: 'Choose a service',
+        other: 'Other / not sure',
+        details: 'Short project description',
+        budget: 'Approximate budget (optional)',
+        budgets: ['Under SAR 10,000', 'SAR 10,000 – 30,000', 'SAR 30,000 – 100,000', 'Over SAR 100,000', 'Prefer not to say'],
+        date: 'Expected timing (optional)',
+        submit: 'Send request',
+        sending: 'Sending…',
+        success: 'Thank you, we have your request. Our team will be in touch soon.',
+        error: 'Could not send. Please try again or message us on WhatsApp.',
+        notReady: 'The request form is being set up. Please use the contact details below for now.',
+      },
+    },
+    footer: {
+      tagline: 'An integrated creative partner for media production and content.',
+      rights: 'All rights reserved.',
+      contactTitle: 'Contact',
+      linksTitle: 'Links',
+      pending: 'Official contact details coming soon',
+    },
+  },
+} as const;
+
+export type HomeCopy = (typeof home)['ar'] | (typeof home)['en'];
