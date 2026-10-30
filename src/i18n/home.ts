@@ -25,8 +25,8 @@ export const home = {
         'مدار الإبداع المتكامل شريكك الإبداعي في السعودية. نخطط وننتج المحتوى المرئي والصوتي الذي يعرّف الناس بعلامتك ويقنعهم بالتواصل معك.',
       primary: 'اطلب عرض سعر',
       secondary: 'شاهد أعمالنا',
-      reel: 'العرض التعريفي (Showreel)',
-      reelNote: 'يُضاف فيديو الشركة هنا',
+      reel: 'لقطات من أعمالنا',
+      reelNote: '',
     },
     services: {
       eyebrow: 'خدماتنا',
@@ -37,9 +37,12 @@ export const home = {
     work: {
       eyebrow: 'أعمالنا',
       title: 'مختارات من أعمالنا',
-      lead: 'نماذج من مشاريع نفذناها لعلامات تجارية وجهات مختلفة.',
-      sample: 'نموذج مؤقت',
-      all: 'كل الأعمال',
+      lead: 'إعلانات وريلز وأفلام لجهات حكومية وجمعيات، وجلسات تصوير وبودكاست. اختر التصنيف واضغط على أي عمل لمشاهدته.',
+      all: 'الكل',
+      watch: 'شاهد',
+      view: 'اعرض',
+      close: 'إغلاق',
+      filterLabel: 'تصنيف الأعمال',
     },
     process: {
       eyebrow: 'طريقة عملنا',
@@ -67,6 +70,7 @@ export const home = {
       text: 'من تطوير فكرة البرنامج وإعداد الضيوف إلى التصوير بعدة كاميرات والمونتاج والنشر. ويمكنك حجز الاستوديو والمعدات فقط إن كان لديك فريقك.',
       cta: 'احجز جلسة تسجيل',
       points: ['تصوير بعدة كاميرات', 'صوت احترافي', 'مونتاج ونسخ قصيرة للمنصات'],
+      imageAlt: 'استوديو مجهز بالإضاءة والكاميرا والميكروفون لتسجيل المحتوى',
     },
     faq: {
       eyebrow: 'الأسئلة الشائعة',
@@ -146,8 +150,8 @@ export const home = {
         'Madar Integrated Creativity is your creative partner in Saudi Arabia. We plan and produce the video and audio content that introduces your brand and gets people to reach out.',
       primary: 'Request a quote',
       secondary: 'See our work',
-      reel: 'Showreel',
-      reelNote: 'Company showreel goes here',
+      reel: 'Moments from our work',
+      reelNote: '',
     },
     services: {
       eyebrow: 'Services',
@@ -158,9 +162,12 @@ export const home = {
     work: {
       eyebrow: 'Work',
       title: 'Selected work',
-      lead: 'A selection of projects we have produced for brands and organisations.',
-      sample: 'Sample',
-      all: 'All work',
+      lead: 'Ads, reels, films for government bodies and non-profits, photo shoots and podcasts. Pick a category and tap any project to watch it.',
+      all: 'All',
+      watch: 'Watch',
+      view: 'View',
+      close: 'Close',
+      filterLabel: 'Filter work',
     },
     process: {
       eyebrow: 'Process',
@@ -188,6 +195,7 @@ export const home = {
       text: 'From show concept and guest prep to multi-camera recording, editing and publishing. If you have your own team, you can book just the studio and equipment.',
       cta: 'Book a recording session',
       points: ['Multi-camera recording', 'Professional audio', 'Editing and short clips for social'],
+      imageAlt: 'Studio set up with lighting, camera and microphone for recording content',
     },
     faq: {
       eyebrow: 'FAQ',
