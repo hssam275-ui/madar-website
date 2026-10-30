@@ -1,8 +1,11 @@
-// Proposed service list from the project brief.
+// Proposed service list: media services from the project brief, print services added on request.
 // `confirmed: false` = not yet approved by Madar. Set to true (or remove the entry) before launch.
+
+export type ServiceGroup = 'media' | 'print';
 
 export type Service = {
   slug: string;
+  group: ServiceGroup;
   icon: string;
   confirmed: boolean;
   ar: { title: string; summary: string };
@@ -12,6 +15,7 @@ export type Service = {
 export const services: Service[] = [
   {
     slug: 'media-production',
+    group: 'media',
     icon: 'film',
     confirmed: false,
     ar: {
@@ -25,6 +29,7 @@ export const services: Service[] = [
   },
   {
     slug: 'photo-video',
+    group: 'media',
     icon: 'camera',
     confirmed: false,
     ar: {
@@ -38,6 +43,7 @@ export const services: Service[] = [
   },
   {
     slug: 'podcast',
+    group: 'media',
     icon: 'mic',
     confirmed: false,
     ar: {
@@ -51,6 +57,7 @@ export const services: Service[] = [
   },
   {
     slug: 'studio-rental',
+    group: 'media',
     icon: 'studio',
     confirmed: false,
     ar: {
@@ -64,6 +71,7 @@ export const services: Service[] = [
   },
   {
     slug: 'content-creation',
+    group: 'media',
     icon: 'spark',
     confirmed: false,
     ar: {
@@ -77,6 +85,7 @@ export const services: Service[] = [
   },
   {
     slug: 'marketing',
+    group: 'media',
     icon: 'target',
     confirmed: false,
     ar: {
@@ -90,6 +99,7 @@ export const services: Service[] = [
   },
   {
     slug: 'business-development',
+    group: 'media',
     icon: 'growth',
     confirmed: false,
     ar: {
@@ -103,6 +113,7 @@ export const services: Service[] = [
   },
   {
     slug: 'creative-consulting',
+    group: 'media',
     icon: 'compass',
     confirmed: false,
     ar: {
@@ -114,4 +125,91 @@ export const services: Service[] = [
       summary: 'Expert input on concept, message and visual direction before production begins.',
     },
   },
+  // Print services (proposed list, awaiting Madar's confirmation).
+  {
+    slug: 'print-identity',
+    group: 'print',
+    icon: 'card',
+    confirmed: false,
+    ar: {
+      title: 'الهوية المطبوعة',
+      summary: 'بطاقات أعمال وأوراق رسمية وظروف وملفات تحمل هوية شركتك بخامات وتشطيبات فاخرة.',
+    },
+    en: {
+      title: 'Printed Brand Identity',
+      summary: 'Business cards, letterheads, envelopes and folders in your brand identity, with premium paper and finishes.',
+    },
+  },
+  {
+    slug: 'marketing-print',
+    group: 'print',
+    icon: 'layers',
+    confirmed: false,
+    ar: {
+      title: 'المطبوعات التسويقية',
+      summary: 'بروشورات وفلايرز وكتيبات وكتالوجات منتجات، من التصميم إلى الطباعة والتسليم.',
+    },
+    en: {
+      title: 'Marketing Print',
+      summary: 'Brochures, flyers, booklets and product catalogues, from design to print and delivery.',
+    },
+  },
+  {
+    slug: 'large-format',
+    group: 'print',
+    icon: 'flag',
+    confirmed: false,
+    ar: {
+      title: 'الطباعة الكبيرة واللوحات',
+      summary: 'رول أب وبنرات ولوحات إعلانية وستاندات عرض للمحلات والمكاتب والمواقع الخارجية.',
+    },
+    en: {
+      title: 'Large Format & Signage',
+      summary: 'Roll-ups, banners, billboards and display stands for shops, offices and outdoor sites.',
+    },
+  },
+  {
+    slug: 'event-print',
+    group: 'print',
+    icon: 'badge',
+    confirmed: false,
+    ar: {
+      title: 'مطبوعات الفعاليات والمعارض',
+      summary: 'دعوات وبطاقات تعريف وخلفيات مسارح وتجهيز أركان المعارض بهوية موحدة.',
+    },
+    en: {
+      title: 'Event & Exhibition Print',
+      summary: 'Invitations, badges, stage backdrops and exhibition booth graphics in one consistent look.',
+    },
+  },
+  {
+    slug: 'packaging',
+    group: 'print',
+    icon: 'box',
+    confirmed: false,
+    ar: {
+      title: 'التغليف والملصقات',
+      summary: 'علب وأكياس وملصقات منتجات تُبرز علامتك على الرف وعند التسليم.',
+    },
+    en: {
+      title: 'Packaging & Labels',
+      summary: 'Boxes, bags and product labels that make your brand stand out on the shelf and at delivery.',
+    },
+  },
+  {
+    slug: 'promo-gifts',
+    group: 'print',
+    icon: 'gift',
+    confirmed: false,
+    ar: {
+      title: 'الهدايا الدعائية',
+      summary: 'أقلام وأكواب ودفاتر وملابس مطبوعة بشعارك للموظفين والعملاء والفعاليات.',
+    },
+    en: {
+      title: 'Branded Merchandise',
+      summary: 'Pens, mugs, notebooks and apparel printed with your logo for staff, clients and events.',
+    },
+  },
 ];
+
+export const servicesIn = (group: ServiceGroup) => services.filter((s) => s.group === group);

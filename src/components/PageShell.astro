@@ -1,0 +1,52 @@
+---
+// Shared frame for inner pages: <head>, header, footer and WhatsApp button.
+import Base from '../layouts/Base.astro';
+import Header from './Header.astro';
+import Footer from './Footer.astro';
+import Icon from './Icon.astro';
+import { home } from '../i18n/home';
+import { whatsappLink } from '../data/site';
+
+interface Props {
+  lang: 'ar' | 'en';
+  title: string;
+  description: string;
+  altPath: string;
+  schema?: Record<string, unknown>[];
+}
+const { lang, title, description, altPath, schema } = Astro.props;
+const t = home[lang];
+const wa = whatsappLink(t.contact.whatsappMsg);
+---
+
+<Base title={title} description={description} lang={lang} altPath={altPath} schema={schema}>
+  <Header lang={lang} t={t.nav} altPath={altPath} />
+  <main id="main">
+    <slot />
+  </main>
+  <Footer lang={lang} t={t.footer} nav={t.nav} />
+  {
+    wa && (
+      <a class="wa-fab" href={wa} target="_blank" rel="noopener" aria-label={t.contact.whatsapp}>
+        <Icon name="whatsapp" size={28} />
+      </a>
+    )
+  }
+</Base>
+
+<style>
+  .wa-fab {
+    position: fixed;
+    bottom: 20px;
+    inset-inline-end: 20px;
+    z-index: 40;
+    display: grid;
+    place-items: center;
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: #25d366;
+    color: #fff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  }
+</style>

@@ -1,0 +1,78 @@
+---
+import { getCollection } from 'astro:content';
+import PageShell from '../../components/PageShell.astro';
+import BlogCard from '../../components/BlogCard.astro';
+import { url } from '../../utils/url';
+
+const posts = (await getCollection('blog', (p) => !p.data.draft)).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+const title = 'المقالات | مدار الإبداع المتكامل';
+const description =
+  'مقالات ونصائح عملية في الإنتاج الإعلامي والبودكاست وصناعة المحتوى والمطبوعات التسويقية للشركات والعلامات التجارية في السعودية.';
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Blog',
+    name: 'مقالات مدار الإبداع المتكامل',
+    blogPost: posts.map((p) => ({
+      '@type': 'BlogPosting',
+      headline: p.data.title,
+      datePublished: p.data.date.toISOString(),
+      url: new URL(url(`/blog/${p.id}/`), Astro.site).href,
+    })),
+  },
+];
+---
+
+<PageShell lang="ar" title={title} description={description} altPath={url('/en/')} schema={schema}>
+  <section class="hero">
+    <div class="container">
+      <p class="eyebrow">المقالات</p>
+      <h1>أفكار ونصائح من فريق مدار</h1>
+      <p class="lead">دليلك العملي في الإنتاج الإعلامي والبودكاست وصناعة المحتوى والمطبوعات.</p>
+    </div>
+  </section>
+  <section class="list">
+    <div class="container grid">
+      {posts.map((post) => <BlogCard post={post} readLabel="اقرأ المقال" />)}
+    </div>
+  </section>
+</PageShell>
+
+<style>
+  .hero {
+    padding-block: clamp(130px, 16vw, 180px) clamp(32px, 5vw, 56px);
+    background: radial-gradient(ellipse at 85% 0%, rgba(31, 176, 216, 0.16), transparent 55%);
+  }
+  .hero .container {
+    display: grid;
+    gap: 18px;
+  }
+  h1 {
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+  }
+  .lead {
+    max-width: 620px;
+    color: var(--text-muted);
+    font-size: 1.1rem;
+  }
+  .list {
+    padding-block-end: var(--section);
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 28px;
+  }
+  @media (max-width: 960px) {
+    .grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 600px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,5 +1,6 @@
 ---
 import Logo from './Logo.astro';
+import { url } from '../utils/url';
 import { site, whatsappLink } from '../data/site';
 import type { HomeCopy } from '../i18n/home';
 
@@ -10,6 +11,8 @@ interface Props {
 }
 const { lang, t, nav } = Astro.props;
 const year = new Date().getFullYear();
+const prefix = lang === 'ar' ? '' : '/en';
+const home = url(`${prefix}/`);
 const wa = whatsappLink();
 const social = Object.entries(site.social).filter(([, url]) => url);
 const hasContact = site.email || site.phone || wa || site.city[lang];
@@ -25,10 +28,11 @@ const hasContact = site.email || site.phone || wa || site.city[lang];
     <nav aria-label={t.linksTitle}>
       <h2>{t.linksTitle}</h2>
       <ul>
-        <li><a href="#services">{nav.services}</a></li>
-        <li><a href="#work">{nav.work}</a></li>
-        <li><a href="#process">{nav.process}</a></li>
-        <li><a href="#contact">{nav.quote}</a></li>
+        <li><a href={url(`${prefix}/services/media/`)}>{nav.mediaServices}</a></li>
+        <li><a href={url(`${prefix}/services/print/`)}>{nav.printServices}</a></li>
+        <li><a href={`${home}#work`}>{nav.work}</a></li>
+        <li><a href={url('/blog/')}>{nav.blog}</a></li>
+        <li><a href={`${home}#contact`}>{nav.quote}</a></li>
       </ul>
     </nav>
 

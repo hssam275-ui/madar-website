@@ -1,7 +1,7 @@
 ---
 // Quote request form. Submissions go to Web3Forms (free tier) which emails them to Madar.
 // Set PUBLIC_WEB3FORMS_KEY in the hosting environment to activate it.
-import { services } from '../data/services';
+import { servicesIn } from '../data/services';
 import type { HomeCopy } from '../i18n/home';
 
 interface Props {
@@ -47,7 +47,12 @@ const accessKey = import.meta.env.PUBLIC_WEB3FORMS_KEY ?? '';
     <span>{t.service} *</span>
     <select name="service" id="quote-service" required>
       <option value="" disabled selected>{t.servicePick}</option>
-      {services.map((s) => <option value={s.slug}>{s[lang].title}</option>)}
+      <optgroup label={t.mediaGroup}>
+        {servicesIn('media').map((s) => <option value={s.slug}>{s[lang].title}</option>)}
+      </optgroup>
+      <optgroup label={t.printGroup}>
+        {servicesIn('print').map((s) => <option value={s.slug}>{s[lang].title}</option>)}
+      </optgroup>
       <option value="other">{t.other}</option>
     </select>
   </label>

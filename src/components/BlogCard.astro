@@ -1,0 +1,85 @@
+---
+import { url } from '../utils/url';
+import Icon from './Icon.astro';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+  readLabel: string;
+}
+const { post, readLabel } = Astro.props;
+const { title, description, date, cover, category } = post.data;
+const fallbackIcon = { media: 'film', podcast: 'mic', print: 'printer', marketing: 'target' }[category];
+const fmt = new Intl.DateTimeFormat('ar-SA-u-ca-gregory-nu-latn', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+
+<article class="post">
+  <a href={url(`/blog/${post.id}/`)}>
+    <span class="cover">
+      {cover ? <img src={url(cover)} alt="" loading="lazy" decoding="async" /> : <Icon name={fallbackIcon} size={48} />}
+    </span>
+    <time datetime={date.toISOString()}>{fmt.format(date)}</time>
+    <h3>{title}</h3>
+    <p>{description}</p>
+    <span class="read">{readLabel} <Icon name="arrow" size={16} /></span>
+  </a>
+</article>
+
+<style>
+  .post a {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 100%;
+  }
+  .cover {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 16 / 9;
+    margin-block-end: 8px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--line);
+    color: var(--accent);
+    background:
+      radial-gradient(circle at 70% 30%, rgba(31, 176, 216, 0.25), transparent 60%),
+      var(--bg-soft);
+  }
+  .cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+  .post a:hover img {
+    transform: scale(1.04);
+  }
+  time {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+  }
+  h3 {
+    font-size: 1.15rem;
+    line-height: 1.5;
+  }
+  p {
+    flex: 1;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .read {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  [dir='rtl'] .read :global(svg) {
+    transform: scaleX(-1);
+  }
+</style>

@@ -10,13 +10,17 @@ interface Props {
   altPath: string;
 }
 const { lang, t, altPath } = Astro.props;
-const home = url(lang === 'ar' ? '/' : '/en/');
+const prefix = lang === 'ar' ? '' : '/en';
+const home = url(`${prefix}/`);
+const servicePages = [
+  { href: url(`${prefix}/services/media/`), label: t.mediaServices, hint: t.mediaServicesHint, icon: 'film' },
+  { href: url(`${prefix}/services/print/`), label: t.printServices, hint: t.printServicesHint, icon: 'printer' },
+];
 const links = [
-  { href: '#services', label: t.services },
-  { href: '#work', label: t.work },
-  { href: '#process', label: t.process },
-  { href: '#faq', label: t.faq },
-  { href: '#contact', label: t.contact },
+  { href: `${home}#work`, label: t.work },
+  { href: url('/blog/'), label: t.blog },
+  { href: `${home}#faq`, label: t.faq },
+  { href: `${home}#contact`, label: t.contact },
 ];
 ---
 
@@ -26,6 +30,27 @@ const links = [
 
     <nav class="nav" aria-label={lang === 'ar' ? 'القائمة الرئيسية' : 'Main navigation'}>
       <ul id="nav-list">
+        <li class="has-menu">
+          <button type="button" class="menu-btn" aria-expanded="false" aria-controls="services-menu">
+            {t.services}
+            <Icon name="chevron" size={16} />
+          </button>
+          <ul class="submenu" id="services-menu">
+            {
+              servicePages.map((p) => (
+                <li>
+                  <a href={p.href}>
+                    <span class="sub-icon"><Icon name={p.icon} size={20} /></span>
+                    <span>
+                      <strong>{p.label}</strong>
+                      <small>{p.hint}</small>
+                    </span>
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </li>
         {links.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
         <li class="lang-mobile"><a href={altPath} hreflang={lang === 'ar' ? 'en' : 'ar'}>{t.lang}</a></li>
       </ul>
@@ -33,7 +58,7 @@ const links = [
 
     <div class="actions">
       <a class="lang" href={altPath} hreflang={lang === 'ar' ? 'en' : 'ar'}>{t.lang}</a>
-      <a class="btn btn-primary quote" href="#contact">{t.quote}</a>
+      <a class="btn btn-primary quote" href={`${home}#contact`}>{t.quote}</a>
       <button class="toggle" type="button" aria-controls="nav-list" aria-expanded="false" data-open={t.menu} data-close={t.close}>
         <span class="visually-hidden">{t.menu}</span>
         <Icon name="menu" />
@@ -56,6 +81,17 @@ const links = [
   };
   toggle.addEventListener('click', () => setOpen(!header.classList.contains('open')));
   header.querySelectorAll('.nav a').forEach((a) => a.addEventListener('click', () => setOpen(false)));
+
+  // Services dropdown: click/tap toggles; hover opens on desktop via CSS; Escape and outside click close.
+  const item = header.querySelector<HTMLElement>('.has-menu')!;
+  const btn = item.querySelector<HTMLButtonElement>('.menu-btn')!;
+  const setMenu = (open: boolean) => {
+    item.classList.toggle('menu-open', open);
+    btn.setAttribute('aria-expanded', String(open));
+  };
+  btn.addEventListener('click', () => setMenu(!item.classList.contains('menu-open')));
+  document.addEventListener('click', (e) => !item.contains(e.target as Node) && setMenu(false));
+  document.addEventListener('keydown', (e) => e.key === 'Escape' && setMenu(false));
 </script>
 
 <style>
@@ -69,7 +105,7 @@ const links = [
   }
   .header.scrolled,
   .header.open {
-    background: rgba(12, 12, 14, 0.85);
+    background: rgba(7, 18, 22, 0.85);
     backdrop-filter: blur(14px);
     border-bottom-color: var(--line);
   }
@@ -80,20 +116,111 @@ const links = [
     gap: 24px;
     height: 76px;
   }
-  .nav ul {
+  .nav > ul {
     display: flex;
+    align-items: center;
     gap: 32px;
     margin: 0;
     padding: 0;
     list-style: none;
   }
-  .nav a {
+  .nav a,
+  .menu-btn {
     color: var(--text-muted);
     font-weight: 500;
     transition: color 0.2s;
   }
-  .nav a:hover {
+  .nav a:hover,
+  .menu-btn:hover {
     color: var(--text);
+  }
+  .menu-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0;
+    border: 0;
+    background: none;
+    font: inherit;
+    cursor: pointer;
+  }
+  .menu-btn :global(svg) {
+    transition: transform 0.2s;
+  }
+  .has-menu {
+    position: relative;
+  }
+  .submenu {
+    position: absolute;
+    top: calc(100% + 14px);
+    inset-inline-start: -16px;
+    display: grid;
+    gap: 4px;
+    width: 300px;
+    margin: 0;
+    padding: 8px;
+    list-style: none;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--bg-raised);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px);
+    transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+  }
+  /* bridge the gap so hover doesn't drop between button and menu */
+  .submenu::before {
+    content: '';
+    position: absolute;
+    inset-inline: 0;
+    top: -16px;
+    height: 16px;
+  }
+  .has-menu.menu-open .submenu {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+  .has-menu.menu-open .menu-btn :global(svg) {
+    transform: rotate(180deg);
+  }
+  @media (hover: hover) and (min-width: 961px) {
+    .has-menu:hover .submenu {
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+    }
+  }
+  .submenu a {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px;
+    border-radius: var(--radius-sm);
+    color: var(--text);
+  }
+  .submenu a:hover {
+    background: var(--bg-soft);
+  }
+  .submenu strong {
+    display: block;
+    font-weight: 600;
+  }
+  .submenu small {
+    display: block;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+  }
+  .sub-icon {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: var(--accent-soft);
+    color: var(--accent);
   }
   .actions {
     display: flex;
@@ -141,23 +268,44 @@ const links = [
       top: 76px;
       inset-inline: 0;
       display: none;
-      background: rgba(12, 12, 14, 0.97);
+      max-height: calc(100vh - 76px);
+      overflow-y: auto;
+      background: rgba(7, 18, 22, 0.97);
       border-bottom: 1px solid var(--line);
     }
     .header.open .nav {
       display: block;
     }
-    .nav ul {
+    .nav > ul {
       flex-direction: column;
+      align-items: stretch;
       gap: 0;
       padding: 8px var(--gutter) 24px;
     }
-    .nav a {
-      display: block;
+    .nav > ul > li > a,
+    .menu-btn {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
       padding: 14px 0;
       font-size: 1.1rem;
       color: var(--text);
       border-bottom: 1px solid var(--line);
+    }
+    .submenu {
+      position: static;
+      display: none;
+      width: auto;
+      padding: 8px 0;
+      border: 0;
+      background: none;
+      box-shadow: none;
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+    }
+    .has-menu.menu-open .submenu {
+      display: grid;
     }
   }
   @media (max-width: 480px) {

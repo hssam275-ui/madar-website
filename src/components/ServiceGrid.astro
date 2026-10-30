@@ -1,0 +1,100 @@
+---
+// Grid of service cards. "Request" links jump to the quote form and pre-select the service.
+import Icon from './Icon.astro';
+import type { Service } from '../data/services';
+
+interface Props {
+  lang: 'ar' | 'en';
+  items: Service[];
+  cta: string;
+  href: string; // where the quote form lives, e.g. "#contact" or "/#contact"
+  cols?: 3 | 4;
+}
+const { lang, items, cta, href, cols = 4 } = Astro.props;
+---
+
+<ul class="services" style={`--cols:${cols}`}>
+  {
+    items.map((s, i) => (
+      <li class="service" data-reveal style={`transition-delay:${(i % cols) * 60}ms`}>
+        <span class="service-icon"><Icon name={s.icon} size={26} /></span>
+        <h3>{s[lang].title}</h3>
+        <p>{s[lang].summary}</p>
+        <a class="service-link" href={href} data-service={s.slug}>
+          {cta} <Icon name="arrow" size={16} />
+        </a>
+      </li>
+    ))
+  }
+</ul>
+
+<script>
+  document.querySelectorAll<HTMLAnchorElement>('[data-service]').forEach((a) =>
+    a.addEventListener('click', () => {
+      const select = document.querySelector<HTMLSelectElement>('#quote-service');
+      if (select) select.value = a.dataset.service!;
+    }),
+  );
+</script>
+
+<style>
+  .services {
+    display: grid;
+    grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
+    gap: 1px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .service {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 32px 28px;
+    background: var(--bg);
+    transition: background-color 0.3s;
+  }
+  .service:hover {
+    background: var(--bg-raised);
+  }
+  .service-icon {
+    display: grid;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    margin-block-end: 8px;
+    border-radius: 14px;
+    background: var(--accent-soft);
+    color: var(--accent);
+  }
+  .service h3 {
+    font-size: 1.2rem;
+  }
+  .service p {
+    color: var(--text-muted);
+    font-size: 0.97rem;
+    flex: 1;
+  }
+  .service-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  @media (max-width: 1080px) {
+    .services {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 600px) {
+    .services {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -6,7 +6,10 @@ import Footer from './Footer.astro';
 import QuoteForm from './QuoteForm.astro';
 import Icon from './Icon.astro';
 import { home } from '../i18n/home';
-import { services } from '../data/services';
+import { servicesIn } from '../data/services';
+import ServiceGrid from './ServiceGrid.astro';
+import BlogCard from './BlogCard.astro';
+import { getCollection } from 'astro:content';
 import Portfolio from './Portfolio.astro';
 import { whatsappLink } from '../data/site';
 
@@ -16,6 +19,10 @@ interface Props {
 const { lang } = Astro.props;
 const t = home[lang];
 const altPath = url(lang === 'ar' ? '/en/' : '/');
+const prefix = lang === 'ar' ? '' : '/en';
+const posts = (await getCollection('blog', (p) => !p.data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
 const wa = whatsappLink(t.contact.whatsappMsg);
 
 const faqSchema = {
@@ -67,20 +74,8 @@ const faqSchema = {
           <h2>{t.services.title}</h2>
           <p>{t.services.lead}</p>
         </div>
-        <ul class="services">
-          {
-            services.map((s, i) => (
-              <li class="service" data-reveal style={`transition-delay:${(i % 4) * 60}ms`}>
-                <span class="service-icon"><Icon name={s.icon} size={26} /></span>
-                <h3>{s[lang].title}</h3>
-                <p>{s[lang].summary}</p>
-                <a class="service-link" href={`#contact`} data-service={s.slug}>
-                  {t.services.cta} <Icon name="arrow" size={16} />
-                </a>
-              </li>
-            ))
-          }
-        </ul>
+        <ServiceGrid lang={lang} items={servicesIn('media')} cta={t.services.cta} href="#contact" />
+        <a class="more-link" href={url(`${prefix}/services/media/`)}>{t.nav.mediaServices} <Icon name="arrow" size={16} /></a>
       </div>
     </section>
 
@@ -126,6 +121,28 @@ const faqSchema = {
       </div>
     </section>
 
+    <!-- PRINT -->
+    <section class="section print-section">
+      <div class="container print" data-reveal>
+        <div class="print-copy">
+          <p class="eyebrow">{t.print.eyebrow}</p>
+          <h2>{t.print.title}</h2>
+          <p>{t.print.lead}</p>
+          <a class="btn btn-primary" href={url(`${prefix}/services/print/`)}>{t.print.cta} <Icon name="arrow" size={18} /></a>
+        </div>
+        <ul class="print-list">
+          {
+            servicesIn('print').map((s) => (
+              <li>
+                <Icon name={s.icon} size={22} />
+                {s[lang].title}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+
     <!-- WHY -->
     <section class="section">
       <div class="container why">
@@ -143,6 +160,22 @@ const faqSchema = {
             ))
           }
         </ul>
+      </div>
+    </section>
+
+    <!-- BLOG -->
+    <section class="section blog-section">
+      <div class="container">
+        <div class="blog-head" data-reveal>
+          <div class="section-head">
+            <p class="eyebrow">{t.blogTeaser.eyebrow}</p>
+            <h2>{t.blogTeaser.title}</h2>
+          </div>
+          <a class="more-link" href={url('/blog/')}>{t.blogTeaser.all} <Icon name="arrow" size={16} /></a>
+        </div>
+        <div class="blog-grid">
+          {posts.map((post) => <BlogCard post={post} readLabel={t.blogTeaser.read} />)}
+        </div>
       </div>
     </section>
 
@@ -200,15 +233,6 @@ const faqSchema = {
   }
 </Base>
 
-<script>
-  // "Request this service" buttons pre-select the service in the quote form.
-  document.querySelectorAll<HTMLAnchorElement>('[data-service]').forEach((a) =>
-    a.addEventListener('click', () => {
-      const select = document.querySelector<HTMLSelectElement>('#quote-service');
-      if (select) select.value = a.dataset.service!;
-    }),
-  );
-</script>
 
 <style>
   /* HERO */
@@ -318,55 +342,16 @@ const faqSchema = {
     color: var(--accent-ink);
   }
 
-  /* SERVICES */
-  .services {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 1px;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    background: var(--line);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    overflow: hidden;
-  }
-  .service {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    padding: 32px 28px;
-    background: var(--bg);
-    transition: background-color 0.3s;
-  }
-  .service:hover {
-    background: var(--bg-raised);
-  }
-  .service-icon {
-    display: grid;
-    place-items: center;
-    width: 52px;
-    height: 52px;
-    margin-block-end: 8px;
-    border-radius: 14px;
-    background: var(--accent-soft);
-    color: var(--accent);
-  }
-  .service h3 {
-    font-size: 1.2rem;
-  }
-  .service p {
-    color: var(--text-muted);
-    font-size: 0.97rem;
-    flex: 1;
-  }
-  .service-link {
+  .more-link {
     display: inline-flex;
     align-items: center;
     gap: 8px;
+    margin-block-start: 24px;
     color: var(--accent);
     font-weight: 600;
-    font-size: 0.95rem;
+  }
+  [dir='rtl'] .more-link :global(svg) {
+    transform: scaleX(-1);
   }
 
   /* PROCESS */
@@ -448,6 +433,72 @@ const faqSchema = {
     height: 100%;
     aspect-ratio: 4 / 3;
     object-fit: cover;
+  }
+
+  /* PRINT */
+  .print {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: clamp(32px, 6vw, 80px);
+    align-items: center;
+  }
+  .print-copy {
+    display: grid;
+    gap: 18px;
+    justify-items: start;
+  }
+  .print-copy h2 {
+    font-size: clamp(1.8rem, 3.4vw, 2.7rem);
+  }
+  .print-copy > p {
+    color: var(--text-muted);
+  }
+  .print-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .print-list li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    background: var(--bg-raised);
+    font-weight: 600;
+    font-size: 0.97rem;
+  }
+  .print-list :global(svg) {
+    flex-shrink: 0;
+    color: var(--accent);
+  }
+
+  /* BLOG */
+  .blog-section {
+    background: var(--bg-raised);
+  }
+  .blog-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: end;
+    justify-content: space-between;
+    gap: 16px;
+    margin-block-end: clamp(32px, 5vw, 56px);
+  }
+  .blog-head .section-head {
+    margin: 0;
+  }
+  .blog-head .more-link {
+    margin: 0;
+  }
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 28px;
   }
 
   /* WHY */
@@ -552,9 +603,14 @@ const faqSchema = {
       grid-template-columns: repeat(2, 1fr);
     }
     .studio,
+    .print,
     .faq-wrap,
     .contact {
       grid-template-columns: 1fr;
+    }
+    .blog-grid {
+      grid-template-columns: 1fr;
+      max-width: 560px;
     }
     .studio-visual {
       order: -1;
@@ -562,7 +618,9 @@ const faqSchema = {
   }
   @media (max-width: 600px) {
     .steps,
-    .why-list {
+    .why-list,
+    .blog-grid,
+    .print-list {
       grid-template-columns: 1fr;
     }
     .reel {
