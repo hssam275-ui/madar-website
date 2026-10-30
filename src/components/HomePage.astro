@@ -11,7 +11,7 @@ import ServiceGrid from './ServiceGrid.astro';
 import BlogCard from './BlogCard.astro';
 import { getCollection } from 'astro:content';
 import Portfolio from './Portfolio.astro';
-import { whatsappLink } from '../data/site';
+import { site, whatsappLink } from '../data/site';
 
 interface Props {
   lang: 'ar' | 'en';
@@ -209,13 +209,22 @@ const faqSchema = {
           <p class="eyebrow">{t.contact.eyebrow}</p>
           <h2>{t.contact.title}</h2>
           <p>{t.contact.lead}</p>
-          {
-            wa && (
-              <a class="btn btn-ghost" href={wa} target="_blank" rel="noopener">
-                <Icon name="whatsapp" size={20} /> {t.contact.whatsapp}
-              </a>
-            )
-          }
+          <div class="contact-actions">
+            {
+              wa && (
+                <a class="btn btn-ghost" href={wa} target="_blank" rel="noopener">
+                  <Icon name="whatsapp" size={20} /> {t.contact.whatsapp}
+                </a>
+              )
+            }
+            {
+              site.email && (
+                <a class="btn btn-ghost" href={`mailto:${site.email}`} dir="ltr">
+                  <Icon name="mail" size={20} /> {site.email}
+                </a>
+              )
+            }
+          </div>
         </div>
         <QuoteForm lang={lang} t={t.contact.form} />
       </div>
@@ -579,6 +588,11 @@ const faqSchema = {
   }
   .contact-copy > p {
     color: var(--text-muted);
+  }
+  .contact-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
   }
 
   /* WHATSAPP FAB */

@@ -51,5 +51,5 @@ Create an access key with the official email and set `PUBLIC_WEB3FORMS_KEY` in t
 - [ ] Confirmed services list
 - [ ] Confirm client names may be shown publicly
 - [ ] Official showreel (hero currently loops a montage of portfolio clips)
-- [ ] WhatsApp number, email, phone, social links
+- [ ] WhatsApp number, phone, social links
 - [ ] Final domain in `astro.config.mjs` and `robots.txt`

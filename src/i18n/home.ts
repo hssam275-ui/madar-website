@@ -134,7 +134,7 @@ export const home = {
         sending: 'جارٍ الإرسال…',
         success: 'وصلنا طلبك، شكرًا لك. سيتواصل معك فريقنا قريبًا.',
         error: 'تعذّر الإرسال. حاول مرة أخرى أو راسلنا على واتساب.',
-        notReady: 'نموذج الطلب قيد التفعيل. يُرجى التواصل عبر وسائل التواصل أدناه مؤقتًا.',
+        notReady: 'نموذج الطلب قيد التفعيل. يُرجى مراسلتنا مؤقتًا على info@madaribda.com.',
       },
     },
     footer: {
@@ -278,7 +278,7 @@ export const home = {
         sending: 'Sending…',
         success: 'Thank you, we have your request. Our team will be in touch soon.',
         error: 'Could not send. Please try again or message us on WhatsApp.',
-        notReady: 'The request form is being set up. Please use the contact details below for now.',
+        notReady: 'The request form is being set up. Please email us at info@madaribda.com for now.',
       },
     },
     footer: {

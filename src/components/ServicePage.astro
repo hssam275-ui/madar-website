@@ -127,6 +127,13 @@ const schema = [
         <p class="eyebrow">{t.contact.eyebrow}</p>
         <h2>{t.contact.title}</h2>
         <p>{t.contact.lead}</p>
+        {
+          site.email && (
+            <a class="btn btn-ghost" href={`mailto:${site.email}`} dir="ltr">
+              <Icon name="mail" size={20} /> {site.email}
+            </a>
+          )
+        }
       </div>
       <QuoteForm lang={lang} t={t.contact.form} />
     </div>
@@ -256,6 +263,7 @@ const schema = [
   .contact-copy {
     display: grid;
     gap: 18px;
+    justify-items: start;
   }
   .contact-copy h2 {
     font-size: clamp(1.9rem, 3.6vw, 2.9rem);

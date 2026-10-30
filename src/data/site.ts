@@ -6,8 +6,7 @@ export const site = {
   shortName: { ar: 'مدار', en: 'Madar' },
   // TODO: official WhatsApp number in international format, digits only, e.g. 9665XXXXXXXX
   whatsapp: '',
-  // TODO: official email that receives quote requests
-  email: '',
+  email: 'info@madaribda.com',
   // TODO: official phone number for display
   phone: '',
   // TODO: city to show publicly (leave empty to hide)
