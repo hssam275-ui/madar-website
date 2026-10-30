@@ -107,14 +107,6 @@ export const projects: Project[] = [
     en: { title: 'Medical awareness reel', client: 'Dental clinic', summary: 'Short educational content with a doctor, animated captions and B-roll.' },
   },
   {
-    slug: 'interview-reel',
-    category: 'reels',
-    kind: 'video',
-    orientation: 'portrait',
-    ar: { title: 'مقابلة بصيغة ريلز', client: '', summary: 'مقابلة مصوّرة بدقة 4K ومُعدّة للنشر العمودي.' },
-    en: { title: 'Interview reel', client: '', summary: 'A 4K interview edited for vertical platforms.' },
-  },
-  {
     slug: 'podcast-session',
     category: 'podcast',
     kind: 'video',
@@ -137,14 +129,6 @@ export const projects: Project[] = [
     orientation: 'landscape',
     ar: { title: 'تصوير على الشاشة الخضراء', client: '', summary: 'جلسة تصوير داخل الاستوديو بخلفية كروما.' },
     en: { title: 'Green screen shoot', client: '', summary: 'An in-studio shoot on a chroma key backdrop.' },
-  },
-  {
-    slug: 'fashion-shoot-bts',
-    category: 'photo',
-    kind: 'image',
-    orientation: 'portrait',
-    ar: { title: 'جلسة تصوير أزياء', client: '', summary: 'كواليس جلسة تصوير أزياء بفريق كامل داخل الاستوديو.' },
-    en: { title: 'Fashion shoot', client: '', summary: 'Behind the scenes of a full-crew fashion shoot in the studio.' },
   },
   {
     slug: 'product-apparel',
