@@ -152,6 +152,27 @@ const schema = [
     text-decoration: underline;
     text-underline-offset: 4px;
   }
+  .prose :global(table) {
+    display: block;
+    overflow-x: auto;
+    width: 100%;
+    margin-block: 0 1.4em;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+  .prose :global(th),
+  .prose :global(td) {
+    padding: 10px 14px;
+    border: 1px solid var(--line);
+    text-align: start;
+    vertical-align: top;
+  }
+  .prose :global(th) {
+    background: var(--bg-raised);
+    color: var(--text);
+    white-space: nowrap;
+  }
   .cta {
     display: flex;
     flex-wrap: wrap;
