@@ -22,7 +22,6 @@ description: Technical SEO audit of the madaribda.com Astro site (titles, descri
    - `dist/sitemap-index.xml` فيه كل الصفحات، و`public/robots.txt` يشير له.
    - الصفحات الجديدة مربوطة من القائمة أو من مقالات أخرى (لا صفحة يتيمة).
    - صور `public/work` و`public/blog` بصيغة webp وعرض أقصى 1600px، والفيديو أقل من 20MB.
-   - صفحة 404 موجودة؟ (`src/pages/404.astro`).
    - النسخة الإنجليزية: لكل صفحة عربية لها مقابل، `altPath` مضبوط في `PageShell`/`Base`.
 
 3. السرعة: الموقع ثابت وCSS inline، فالمخاطر غالبًا في الفيديو والصور. تأكد أن فيديوهات المعاينة `-preview.mp4` قصيرة ومكتومة و`preload="none"` أو `metadata`.
@@ -34,7 +33,8 @@ description: Technical SEO audit of the madaribda.com Astro site (titles, descri
 | المشكلة | الملف |
 | --- | --- |
 | العنوان/الوصف/canonical/hreflang/OG لكل الصفحات | `src/layouts/Base.astro` |
-| schema المقال (BlogPosting) والغلاف | `src/pages/blog/[slug].astro` |
+| schema المقال (BlogPosting/Breadcrumb/FAQPage) وog:image | `src/pages/blog/[slug].astro`, `src/utils/faq.ts` |
+| ملخص الذكاء الاصطناعي | `src/pages/llms.txt.ts` |
 | schema الخدمات (ItemList/Service/Breadcrumb) | `src/components/ServicePage.astro` |
 | FAQPage للرئيسية + نصوصها | `src/components/HomePage.astro`, `src/i18n/home.ts` |
 | بيانات الشركة (Organization) | `src/data/site.ts` |
@@ -42,7 +42,7 @@ description: Technical SEO audit of the madaribda.com Astro site (titles, descri
 
 ## قواعد
 
-- العنوان: الكلمة المفتاحية أولًا، أقل من ~60 حرفًا قبل لاحقة " | مدار الإبداع المتكامل". الوصف 120–160 حرفًا ويحتوي فائدة + دعوة.
+- العنوان: الكلمة المفتاحية أولًا، ≤ 60 حرفًا كاملًا. للمقالات استخدم `seoTitle` في frontmatter (يُضاف له " | مدار"). الوصف 120–160 حرفًا ويحتوي فائدة + دعوة.
 - لا تخترع بيانات منظمة غير صحيحة (عنوان، تقييمات، أسعار، ساعات عمل). أي حقل غير مؤكد يُترك فارغًا في `site.ts`.
 - لا تغيّر slug لصفحة منشورة إلا مع تحويل؛ GitHub Pages لا يدعم redirects من السيرفر، فالأفضل عدم تغيير الروابط أصلًا.
 - لا تلمس سجلات DNS للبريد (MX/TXT) عند أي إعداد للدومين.

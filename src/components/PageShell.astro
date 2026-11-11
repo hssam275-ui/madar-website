@@ -13,13 +13,29 @@ interface Props {
   description: string;
   altPath: string;
   schema?: Record<string, unknown>[];
+  ogType?: 'website' | 'article';
+  ogImage?: string;
+  publishedTime?: Date;
+  modifiedTime?: Date;
+  noindex?: boolean;
 }
-const { lang, title, description, altPath, schema } = Astro.props;
+const { lang, title, description, altPath, schema, ogType, ogImage, publishedTime, modifiedTime, noindex } = Astro.props;
 const t = home[lang];
 const wa = whatsappLink(t.contact.whatsappMsg);
 ---
 
-<Base title={title} description={description} lang={lang} altPath={altPath} schema={schema}>
+<Base
+  title={title}
+  description={description}
+  lang={lang}
+  altPath={altPath}
+  schema={schema}
+  ogType={ogType}
+  ogImage={ogImage}
+  publishedTime={publishedTime}
+  modifiedTime={modifiedTime}
+  noindex={noindex}
+>
   <Header lang={lang} t={t.nav} altPath={altPath} />
   <main id="main">
     <slot />

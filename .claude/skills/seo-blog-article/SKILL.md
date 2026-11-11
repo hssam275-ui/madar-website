@@ -18,8 +18,10 @@ description: Write and publish an SEO/GEO-optimized Arabic blog article on madar
 
 ```yaml
 ---
-title: 'الكلمة المفتاحية أولًا: وعد واضح للقارئ'   # ≤ ~60 حرف يفضّل
+title: 'الكلمة المفتاحية أولًا: وعد واضح للقارئ'   # يظهر كعنوان H1
+seoTitle: 'عنوان أقصر لنتائج البحث'                # ≤ ~50 حرف، يُضاف له " | مدار"
 description: 'جملة أو اثنتان 120–160 حرف: ماذا سيعرف القارئ ولمن المقال.'
+# updated: YYYY-MM-DD   # عند تحديث مقال قديم
 date: YYYY-MM-DD
 category: media | podcast | print | marketing
 cover: /blog/<slug>.webp

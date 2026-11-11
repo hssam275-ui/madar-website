@@ -14,9 +14,9 @@ description: Generative Engine Optimization (GEO) so ChatGPT, Gemini, Perplexity
   (أكّد المدينة مع المستخدم قبل نشرها.)
 - `sameAs` في Organization يملأ تلقائيًا من `site.social` — املأ الروابط فور توفرها، فهي أهم إشارة لربط الكيان.
 
-## 2. `public/llms.txt`
+## 2. `/llms.txt`
 
-ملف Markdown في جذر الموقع يلخص الشركة للنماذج: الاسم، الوصف أعلاه، الخدمات مع روابطها، منطقة الخدمة، طريقة التواصل، وقائمة بأهم المقالات (عنوان + رابط + سطر). حدّثه عند إضافة خدمة أو مقال مهم. لا معلومات غير مؤكدة.
+يُبنى تلقائيًا من `src/pages/llms.txt.ts` (الوصف، الخدمات من `services.ts`، التواصل من `site.ts`، وكل المقالات). المقالات والخدمات الجديدة تظهر فيه وحدها؛ عدّل الملف فقط لتغيير الوصف أو الأقسام. لا معلومات غير مؤكدة.
 
 ## 3. محتوى قابل للاقتباس
 
@@ -28,7 +28,7 @@ description: Generative Engine Optimization (GEO) so ChatGPT, Gemini, Perplexity
 
 ## 4. بيانات منظمة
 
-- المقالات: `BlogPosting` موجود؛ الناقص `FAQPage` من قسم الأسئلة الشائعة و`BreadcrumbList` (التنفيذ في `src/pages/blog/[slug].astro` باستخراج `###` تحت `## أسئلة شائعة`). الفاحص `scripts/seo-check.mjs` يحذّر من ذلك.
+- المقالات: `BlogPosting` و`BreadcrumbList` و`FAQPage` تُولَّد تلقائيًا في `src/pages/blog/[slug].astro`؛ FAQPage يُستخرج من `###` تحت `## أسئلة شائعة` (`src/utils/faq.ts`)، فالتزم بهذا الشكل.
 - الخدمات: `Service` موجود في `ServicePage.astro`.
 - الأعمال: عند إنشاء صفحات دراسات الحالة استخدم `CreativeWork`/`VideoObject` مع `thumbnailUrl` و`uploadDate` و`contentUrl`.
 

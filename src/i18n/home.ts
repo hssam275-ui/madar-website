@@ -5,7 +5,7 @@ export const home = {
     meta: {
       title: 'مدار الإبداع المتكامل | إنتاج إعلامي وتصوير وبودكاست في السعودية',
       description:
-        'مدار الإبداع المتكامل شريك إبداعي للشركات والعلامات التجارية في السعودية: إنتاج إعلامي، تصوير فوتوغرافي وفيديو، إنتاج بودكاست، صناعة محتوى وحلول تسويقية. اطلب عرض سعر.',
+        'مدار الإبداع المتكامل شريك إبداعي للشركات في السعودية: إنتاج إعلامي، وتصوير وفيديو، وبودكاست، وصناعة محتوى، وطباعة وحلول تسويقية. اطلب عرض سعر.',
     },
     nav: {
       services: 'خدماتنا',
@@ -147,9 +147,9 @@ export const home = {
   },
   en: {
     meta: {
-      title: 'Madar Integrated Creativity | Media Production, Video & Podcasts in Saudi Arabia',
+      title: 'Madar | Media Production, Video & Podcasts in Saudi Arabia',
       description:
-        'Madar Integrated Creativity is a creative production partner for companies and brands in Saudi Arabia: media production, photo and video, podcast production, content creation and marketing. Request a quote.',
+        'Creative production partner for brands in Saudi Arabia: video and photo, podcast production, content creation, print and marketing. Request a quote.',
     },
     nav: {
       services: 'Services',

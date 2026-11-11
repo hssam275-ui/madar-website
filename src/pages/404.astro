@@ -1,0 +1,80 @@
+---
+// GitHub Pages serves dist/404.html for any missing URL.
+import { getCollection } from 'astro:content';
+import PageShell from '../components/PageShell.astro';
+import Icon from '../components/Icon.astro';
+import { url } from '../utils/url';
+
+const posts = (await getCollection('blog', (p) => !p.data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 4);
+---
+
+<PageShell
+  lang="ar"
+  title="الصفحة غير موجودة | مدار"
+  description="الصفحة التي تبحث عنها غير موجودة. تصفح خدمات مدار الإبداع المتكامل أو مقالاتنا أو اطلب عرض سعر."
+  altPath={url('/en/')}
+  noindex
+>
+  <section class="nf">
+    <div class="container narrow">
+      <p class="eyebrow">404</p>
+      <h1>الصفحة غير موجودة</h1>
+      <p class="lead">ربما تغيّر الرابط أو حُذفت الصفحة. هذه أماكن مفيدة للبدء منها:</p>
+      <div class="actions">
+        <a class="btn btn-primary" href={url('/')}>الصفحة الرئيسية <Icon name="arrow" size={18} /></a>
+        <a class="btn btn-ghost" href={url('/#contact')}>اطلب عرض سعر</a>
+      </div>
+      <ul class="links">
+        <li><a href={url('/services/media/')}>خدمات الإنتاج الإعلامي</a></li>
+        <li><a href={url('/services/print/')}>خدمات الطباعة</a></li>
+        <li><a href={url('/#work')}>أعمالنا</a></li>
+        <li><a href={url('/blog/')}>كل المقالات</a></li>
+        {posts.map((p) => <li><a href={url(`/blog/${p.id}/`)}>{p.data.title}</a></li>)}
+      </ul>
+      <p class="en"><a href={url('/en/')} lang="en" dir="ltr">Page not found. Go to the English homepage</a></p>
+    </div>
+  </section>
+</PageShell>
+
+<style>
+  .nf {
+    padding-block: clamp(130px, 16vw, 170px) 80px;
+  }
+  .narrow {
+    max-width: 780px;
+  }
+  h1 {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    margin-block: 8px 12px;
+  }
+  .lead {
+    color: var(--text-muted);
+    font-size: 1.12rem;
+  }
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-block: 28px;
+  }
+  .links {
+    display: grid;
+    gap: 10px;
+    padding: 0;
+    list-style: none;
+  }
+  .links a,
+  .en a {
+    color: var(--accent);
+  }
+  .links a:hover,
+  .en a:hover {
+    text-decoration: underline;
+  }
+  .en {
+    margin-top: 28px;
+    color: var(--text-muted);
+  }
+</style>

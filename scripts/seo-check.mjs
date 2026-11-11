@@ -69,7 +69,7 @@ for (const file of pages.sort()) {
 
   if (route.startsWith('/blog/') && route !== '/blog/') {
     if (!types.includes('BlogPosting')) err('article without BlogPosting schema');
-    if (/أسئلة شائعة|الأسئلة الشائعة/.test(html) && !types.includes('FAQPage'))
+    if (/<h2[^>]*>\s*(أسئلة شائعة|الأسئلة الشائعة)/.test(html) && !types.includes('FAQPage'))
       warn('article has an FAQ section but no FAQPage schema');
     if (!types.includes('BreadcrumbList')) warn('article without BreadcrumbList schema');
   }

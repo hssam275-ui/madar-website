@@ -3,9 +3,9 @@
 export const servicePages = {
   media: {
     ar: {
-      metaTitle: 'خدمات الإنتاج الإعلامي والتصوير والبودكاست | مدار الإبداع المتكامل',
+      metaTitle: 'خدمات الإنتاج الإعلامي والتصوير والبودكاست | مدار',
       metaDescription:
-        'خدمات الميديا من مدار الإبداع المتكامل في السعودية: إنتاج الأفلام والإعلانات، التصوير الفوتوغرافي والفيديو، إنتاج البودكاست، تأجير الاستوديو، صناعة المحتوى والحلول التسويقية.',
+        'خدمات الميديا من مدار في السعودية: الأفلام والإعلانات، والتصوير والفيديو، وإنتاج البودكاست، وتأجير الاستوديو، وصناعة المحتوى والتسويق.',
       eyebrow: 'خدمات الميديا',
       title: 'إنتاج مرئي وصوتي يحكي قصة علامتك',
       lead: 'من الإعلان التلفزيوني إلى ريلز الأسبوع، نتولى الفكرة والتصوير والمونتاج والنشر بفريق واحد.',
@@ -13,9 +13,9 @@ export const servicePages = {
       workCta: 'شاهد كل الأعمال',
     },
     en: {
-      metaTitle: 'Media Production, Video & Podcast Services | Madar Integrated Creativity',
+      metaTitle: 'Media Production, Video & Podcast Services | Madar',
       metaDescription:
-        'Media services from Madar Integrated Creativity in Saudi Arabia: films and commercials, photography and video, podcast production, studio rental, content creation and marketing.',
+        'Media services in Saudi Arabia: films and commercials, photo and video, podcast production, studio rental, content creation and marketing.',
       eyebrow: 'Media services',
       title: 'Video and audio that tell your brand’s story',
       lead: 'From a TV commercial to this week’s reels, one team handles the idea, filming, editing and publishing.',
@@ -27,7 +27,7 @@ export const servicePages = {
     ar: {
       metaTitle: 'خدمات الطباعة والمطبوعات التسويقية | مدار الإبداع المتكامل',
       metaDescription:
-        'خدمات المطبوعات من مدار الإبداع المتكامل في السعودية: بطاقات الأعمال والهوية المطبوعة، البروشورات، الرول أب واللوحات، مطبوعات المعارض، التغليف والهدايا الدعائية.',
+        'خدمات الطباعة من مدار: بطاقات الأعمال والهوية المطبوعة، والبروشورات، والرول أب واللوحات، ومطبوعات المعارض، والتغليف والهدايا الدعائية.',
       eyebrow: 'خدمات المطبوعات',
       title: 'مطبوعات تليق بعلامتك، من التصميم حتى التسليم',
       lead: 'نجهز التصميم ونختار الخامة المناسبة ونتابع الطباعة والتشطيب، لتصلك مطبوعات بنفس جودة حضورك الرقمي.',
@@ -42,7 +42,7 @@ export const servicePages = {
     en: {
       metaTitle: 'Printing & Marketing Print Services | Madar Integrated Creativity',
       metaDescription:
-        'Print services from Madar Integrated Creativity in Saudi Arabia: business cards and printed identity, brochures, roll-ups and signage, exhibition print, packaging and branded merchandise.',
+        'Print services in Saudi Arabia: business cards and printed identity, brochures, roll-ups and signage, exhibition print, packaging and branded gifts.',
       eyebrow: 'Print services',
       title: 'Print worthy of your brand, from design to delivery',
       lead: 'We prepare the design, choose the right material and oversee printing and finishing, so your print matches the quality of your digital presence.',

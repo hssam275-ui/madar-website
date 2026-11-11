@@ -1,0 +1,24 @@
+# Builds the site on every pull request and runs the technical SEO check (scripts/seo-check.mjs).
+# Fails only on errors (missing title/description/h1/canonical, broken internal links, invalid JSON-LD);
+# warnings are shown in the log.
+name: SEO check
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  seo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: npm run seo:check
