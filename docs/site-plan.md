@@ -12,7 +12,7 @@
 ## 2. الوضع الحالي (2026-11-11)
 
 - **التقنية:** Astro 5 ثابت، GitHub Pages (نشر تلقائي من `main`)، دومين madaribda.com على Hostinger، تكلفة الاستضافة صفر.
-- **الصفحات:** صفحة 404، و`/llms.txt`، والرئيسية (عربي + إنجليزي) فيها الخدمات والأعمال والخطوات والأسئلة الشائعة ونموذج عرض السعر (Web3Forms يرسل إلى info@madaribda.com)، صفحة الخدمات الإعلامية `/services/media/`، صفحة الطباعة `/services/print/` (عربي + إنجليزي)، المدونة `/blog/` بـ 25 مقالًا عربيًا.
+- **الصفحات:** صفحة 404، و`/llms.txt`، والرئيسية (عربي + إنجليزي) فيها الخدمات والأعمال والخطوات والأسئلة الشائعة ونموذج عرض السعر (Web3Forms يرسل إلى info@madaribda.com)، صفحة الخدمات الإعلامية `/services/media/`، صفحة الطباعة `/services/print/` (عربي + إنجليزي)، المدونة `/blog/` بـ 31 مقالًا عربيًا.
 - **الأعمال:** 15 عملًا حقيقيًا في `src/data/projects.ts` (بلدية قيا، جمعية إبصار، SHED Studio، أكاديميات...).
 - **السيو التقني:** sitemap وrobots وcanonical وhreflang وOrganization وBlogPosting وFAQPage للرئيسية وService للخدمات. نتيجة `node scripts/seo-check.mjs` بعد المرحلة الأولى: 0 أخطاء، 0 تحذيرات (33 صفحة).
 - **Search Console:** مطلوب التحقق عبر سجل TXT جديد في Hostinger؛ الموقع لم يُفهرس بعد.
@@ -60,13 +60,14 @@
 
 | المجموعة | الصفحة الرئيسية | مقالات موجودة |
 | --- | --- | --- |
-| الفعاليات | `/services/events/` (جديدة) | event-coverage-guide-saudi, government-event-coverage, drone-event-filming-saudi, corporate-private-event-coverage, event-photography-cost-saudi, events-celebrations-taif, national-day-founding-day-campaigns-taif |
+| الفعاليات | `/services/events/` (جديدة) | event-coverage-guide-saudi, government-event-coverage, drone-event-filming-saudi, corporate-private-event-coverage, event-photography-cost-saudi, events-celebrations-taif, national-day-founding-day-campaigns-taif, founding-day-2027-ramadan, conference-exhibition-coverage |
 | العقار والدرون | `/services/photography/` | real-estate-photography-saudi, real-estate-photography-cost-saudi, real-estate-marketing-video, real-estate-developer-project-filming, drone-real-estate-photography |
 | الفيديو والإعلانات | `/services/media/` | company-profile-video, reels-ads-saudi, charity-video-production, clinic-medical-video-content, choose-media-production-company |
-| التصوير التجاري | `/services/photography/` | product-photography-ecommerce, restaurant-cafe-photography, professional-photography-taif |
+| التصوير التجاري | `/services/photography/` | product-photography-ecommerce, restaurant-cafe-photography, professional-photography-taif, hotel-chalet-photography |
 | الطباعة والهدايا | `/services/print/` | printing-services-taif, corporate-gifts-taif, marketing-print-sizes-guide |
 | البودكاست | `/services/podcast/` | company-podcast-guide |
-| الوكالة المتكاملة | الرئيسية | best-advertising-agency-taif |
+| الوكالة المتكاملة | الرئيسية | best-advertising-agency-taif, ramadan-2027-marketing-content-plan |
+| الترند والمحتوى الحديث | `/services/media/` | ai-video-content-saudi, ugc-creator-content-saudi |
 
 **المحلي:** راجع سكيل `local-seo-taif` (خريطة الكلمات، Google Business، NAP، LocalBusiness schema).
 **GEO:** راجع سكيل `geo-ai-search` (llms.txt، وصف كيان موحد، إجابة أولًا، FAQ schema).
@@ -105,7 +106,7 @@
 | --- | --- | --- | --- | --- |
 | 1 | تصوير درون في الطائف | drone-photography-taif | العقار والدرون | مقترح |
 | 1 | تكلفة إنتاج فيديو إعلاني في السعودية (عوامل لا أرقام) | video-production-cost-saudi | الفيديو | مقترح |
-| 2 | تصوير المؤتمرات والمعارض | conference-exhibition-coverage | الفعاليات | مقترح |
+| 2 | تصوير المؤتمرات والمعارض | conference-exhibition-coverage | الفعاليات | منشور (PR مقالات الترند) |
 | 2 | إنتاج بودكاست في الطائف | podcast-production-taif | البودكاست | مقترح |
 | 3 | إدارة حسابات التواصل الاجتماعي للشركات | social-media-management-saudi | الفيديو/المحتوى | مقترح |
 | 3 | تصوير حفلات التخرج والمدارس | graduation-school-event-photography | الفعاليات | مقترح |
@@ -113,11 +114,11 @@
 | 4 | تصوير فيديو موشن جرافيك للجهات الحكومية | motion-graphics-government | الفيديو | مقترح |
 | 5 | لوحات المحلات والرول أب: دليل الاختيار | shop-signs-rollup-guide | الطباعة | مقترح |
 | 5 | تصوير المنتجات في الطائف (الورد والعسل والمنتجات المحلية) | product-photography-taif | التصوير التجاري | مقترح |
-| 6 | خطة محتوى رمضان للشركات | ramadan-content-plan-business | الوكالة | مقترح (قبل رمضان بشهرين) |
-| 6 | تصوير الفنادق والشاليهات | hotel-chalet-photography | التصوير التجاري | مقترح |
+| 6 | خطة محتوى رمضان للشركات | ramadan-2027-marketing-content-plan | الوكالة | منشور (PR مقالات الترند) |
+| 6 | تصوير الفنادق والشاليهات | hotel-chalet-photography | التصوير التجاري | منشور (PR مقالات الترند) |
 | 7 | فيديو تعريفي للمدارس والأكاديميات | school-academy-promo-video | الفيديو | مقترح |
 | 7 | استوديو تصوير وبودكاست للإيجار | studio-rental-taif | البودكاست | ينتظر تأكيد الخدمة |
-| 8 | يوم التأسيس: أفكار محتوى ومطبوعات | founding-day-ideas | الفعاليات | مقترح (قبل 22 فبراير بستة أسابيع) |
+| 8 | يوم التأسيس 2027 في رمضان | founding-day-2027-ramadan | الفعاليات | منشور (PR مقالات الترند) |
 | 8 | تغطية موسم الطائف للجهات والرعاة | taif-season-coverage | الفعاليات | مقترح |
 
 **مواسم لا تفوت:** رمضان والعيد (محتوى قبل شهرين)، يوم التأسيس 22 فبراير، موسم الطائف (صيفًا)، اليوم الوطني 23 سبتمبر، التخرج (مايو–يونيو).
