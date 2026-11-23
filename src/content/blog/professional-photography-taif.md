@@ -60,6 +60,8 @@ cover: /blog/professional-photography-taif.webp
 
 يمكنك مشاهدة [نماذج من أعمالنا](/#work) في الفيديو والتصوير.
 
+للعقارات تحديدًا، اقرأ [تصوير العقارات في الطائف](/blog/real-estate-photography-taif/) و[تصوير المزارع والاستراحات والشاليهات في الطائف](/blog/farm-chalet-photography-taif/).
+
 ## أسئلة شائعة
 
 ### هل تصورون في موقعنا أم نحتاج الحضور إليكم؟
