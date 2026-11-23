@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://madaribda.com/sitemap-index.xml
